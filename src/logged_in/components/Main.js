@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useState, useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import withStyles from '@mui/styles/withStyles';
+import withStyles from "@mui/styles/withStyles";
 import Routing from "./Routing";
 import NavBar from "./navigation/NavBar";
 import ConsecutiveSnackbarMessages from "../../shared/components/ConsecutiveSnackbarMessages";
@@ -16,7 +16,7 @@ const styles = (theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down("sm")]: {
       marginLeft: 0,
     },
   },
@@ -41,9 +41,8 @@ function Main(props) {
   const [Dropzone, setDropzone] = useState(null);
   const [hasFetchedDropzone, setHasFetchedDropzone] = useState(false);
   const [DateTimePicker, setDateTimePicker] = useState(null);
-  const [hasFetchedDateTimePicker, setHasFetchedDateTimePicker] = useState(
-    false
-  );
+  const [hasFetchedDateTimePicker, setHasFetchedDateTimePicker] =
+    useState(false);
   const [transactions, setTransactions] = useState([]);
   const [statistics, setStatistics] = useState({ views: [], profit: [] });
   const [posts, setPosts] = useState([]);
@@ -112,36 +111,21 @@ function Main(props) {
 
   const fetchRandomTransactions = useCallback(() => {
     const transactions = [];
-    const iterations = 32;
+    const iterations = 3;
     const oneMonthSeconds = Math.round(60 * 60 * 24 * 30.5);
     const transactionTemplates = [
       {
-        description: "Starter subscription",
+        description: "Ancient Greece",
         isSubscription: true,
         balanceChange: -1499,
       },
       {
-        description: "Premium subscription",
-        isSubscription: true,
-        balanceChange: -2999,
-      },
-      {
-        description: "Business subscription",
-        isSubscription: true,
-        balanceChange: -4999,
-      },
-      {
-        description: "Tycoon subscription",
+        description: "Anglo Saxons",
         isSubscription: true,
         balanceChange: -9999,
       },
       {
-        description: "Added funds",
-        isSubscription: false,
-        balanceChange: 2000,
-      },
-      {
-        description: "Added funds",
+        description: "Early civilisations in the Americas",
         isSubscription: false,
         balanceChange: 5000,
       },
@@ -150,10 +134,7 @@ function Main(props) {
       new Date().getTime() / 1000 - iterations * oneMonthSeconds
     );
     for (let i = 0; i < iterations; i += 1) {
-      const randomTransactionTemplate =
-        transactionTemplates[
-          Math.floor(Math.random() * transactionTemplates.length)
-        ];
+      const randomTransactionTemplate = transactionTemplates[i];
       const transaction = {
         id: i,
         description: randomTransactionTemplate.description,

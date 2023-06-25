@@ -6,7 +6,6 @@ import {
   Divider,
   Toolbar,
   Typography,
-  Button,
   Paper,
   Box,
 } from "@mui/material";
@@ -27,41 +26,20 @@ const styles = {
 const rowsPerPage = 25;
 
 function PostContent(props) {
-  const { pushMessageToSnackbar, setPosts, posts, openAddPostModal, classes } =
-    props;
+  const { posts, classes } = props;
   const [page, setPage] = useState(0);
   const [isDeletePostDialogOpen, setIsDeletePostDialogOpen] = useState(false);
   const [isDeletePostDialogLoading, setIsDeletePostDialogLoading] =
     useState(false);
 
-  const closeDeletePostDialog = useCallback(() => {
+  const closeSelectPostDialog = useCallback(() => {
     setIsDeletePostDialogOpen(false);
     setIsDeletePostDialogLoading(false);
   }, [setIsDeletePostDialogOpen, setIsDeletePostDialogLoading]);
 
-  const deletePost = useCallback(() => {
-    setIsDeletePostDialogLoading(true);
-    setTimeout(() => {
-      const _posts = [...posts];
-      const index = _posts.find((element) => element.id === deletePost.id);
-      _posts.splice(index, 1);
-      setPosts(_posts);
-      pushMessageToSnackbar({
-        text: "Your post has been deleted",
-      });
-      closeDeletePostDialog();
-    }, 1500);
-  }, [
-    posts,
-    setPosts,
-    setIsDeletePostDialogLoading,
-    pushMessageToSnackbar,
-    closeDeletePostDialog,
-  ]);
+  const selectPost = useCallback(() => {});
 
-  const onDelete = useCallback(() => {
-    setIsDeletePostDialogOpen(true);
-  }, [setIsDeletePostDialogOpen]);
+  const onPick = useCallback(() => {}, []);
 
   const handleChangePage = useCallback(
     (__, page) => {
@@ -85,9 +63,9 @@ function PostContent(props) {
                     timeStamp={post.timestamp}
                     options={[
                       {
-                        name: "Delete",
+                        name: "Select",
                         onClick: () => {
-                          onDelete(post);
+                          onPick(post);
                         },
                         icon: <DeleteIcon />,
                       },
@@ -106,20 +84,12 @@ function PostContent(props) {
         </HighlightedInformation>
       </Box>
     );
-  }, [posts, onDelete, page]);
+  }, [posts, onPick, page]);
 
   return (
     <Paper>
       <Toolbar className={classes.toolbar}>
         <Typography variant='h6'>Topics</Typography>
-        <Button
-          variant='contained'
-          color='secondary'
-          onClick={openAddPostModal}
-          disableElevation
-        >
-          Pick a topic
-        </Button>
       </Toolbar>
       <Divider />
       {printImageGrid()}
@@ -147,9 +117,9 @@ function PostContent(props) {
         open={isDeletePostDialogOpen}
         title='Confirmation'
         content='Do you really want to delete the post?'
-        onClose={closeDeletePostDialog}
+        onClose={closeSelectPostDialog}
         loading={isDeletePostDialogLoading}
-        onConfirm={deletePost}
+        onConfirm={selectPost}
       />
     </Paper>
   );
