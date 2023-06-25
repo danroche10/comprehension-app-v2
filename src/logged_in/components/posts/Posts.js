@@ -1,49 +1,21 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import PostContent from "./PostContent";
-import AddPost from "./AddPost";
 
 function Posts(props) {
-  const {
-    selectPosts,
-    EmojiTextArea,
-    ImageCropper,
-    Dropzone,
-    DateTimePicker,
-    pushMessageToSnackbar,
-    posts,
-    setPosts,
-  } = props;
-  const [isAddPostPaperOpen, setIsAddPostPaperOpen] = useState(false);
-
-  const openAddPostModal = useCallback(() => {
-    setIsAddPostPaperOpen(true);
-  }, [setIsAddPostPaperOpen]);
-
-  const closeAddPostModal = useCallback(() => {
-    setIsAddPostPaperOpen(false);
-  }, [setIsAddPostPaperOpen]);
+  const { selectPosts, pushMessageToSnackbar, posts, setPosts } = props;
 
   useEffect(() => {
     selectPosts();
   }, [selectPosts]);
 
-  if (isAddPostPaperOpen) {
-    return <AddPost
-      onClose={closeAddPostModal}
-      EmojiTextArea={EmojiTextArea}
-      ImageCropper={ImageCropper}
-      Dropzone={Dropzone}
-      DateTimePicker={DateTimePicker}
+  return (
+    <PostContent
+      posts={posts}
+      setPosts={setPosts}
       pushMessageToSnackbar={pushMessageToSnackbar}
     />
-  }
-  return <PostContent
-    openAddPostModal={openAddPostModal}
-    posts={posts}
-    setPosts={setPosts}
-    pushMessageToSnackbar={pushMessageToSnackbar}
-  />
+  );
 }
 
 Posts.propTypes = {
