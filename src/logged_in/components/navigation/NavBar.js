@@ -24,9 +24,7 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import MenuIcon from "@mui/icons-material/Menu";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-import MessagePopperButton from "./MessagePopperButton";
 import SideDrawer from "./SideDrawer";
-import Balance from "./Balance";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -126,7 +124,7 @@ const styles = (theme) => ({
 });
 
 function NavBar(props) {
-  const { selectedTab, messages, classes, openAddBalanceDialog, theme } = props;
+  const { selectedTab, classes, theme } = props;
   // Will be use to make website more accessible by screen readers
   const links = useRef([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -160,10 +158,10 @@ function NavBar(props) {
             className={
               selectedTab === "Dashboard" ? classes.textPrimary : "text-white"
             }
-            fontSize="small"
+            fontSize='small'
           />
         ),
-        mobile: <DashboardIcon className="text-white" />,
+        mobile: <DashboardIcon className='text-white' />,
       },
     },
     {
@@ -176,10 +174,10 @@ function NavBar(props) {
             className={
               selectedTab === "Posts" ? classes.textPrimary : "text-white"
             }
-            fontSize="small"
+            fontSize='small'
           />
         ),
-        mobile: <ImageIcon className="text-white" />,
+        mobile: <ImageIcon className='text-white' />,
       },
     },
     {
@@ -194,10 +192,10 @@ function NavBar(props) {
                 ? classes.textPrimary
                 : "text-white"
             }
-            fontSize="small"
+            fontSize='small'
           />
         ),
-        mobile: <AccountBalanceIcon className="text-white" />,
+        mobile: <AccountBalanceIcon className='text-white' />,
       },
     },
     {
@@ -205,24 +203,24 @@ function NavBar(props) {
       name: "Logout",
       icon: {
         desktop: (
-          <PowerSettingsNewIcon className="text-white" fontSize="small" />
+          <PowerSettingsNewIcon className='text-white' fontSize='small' />
         ),
-        mobile: <PowerSettingsNewIcon className="text-white" />,
+        mobile: <PowerSettingsNewIcon className='text-white' />,
       },
     },
   ];
   return (
     <Fragment>
-      <AppBar position="sticky" className={classes.appBar}>
+      <AppBar position='sticky' className={classes.appBar}>
         <Toolbar className={classes.appBarToolbar}>
-          <Box display="flex" alignItems="center">
+          <Box display='flex' alignItems='center'>
             <Hidden smUp>
               <Box mr={1}>
                 <IconButton
-                  aria-label="Open Navigation"
+                  aria-label='Open Navigation'
                   onClick={openMobileDrawer}
-                  color="primary"
-                  size="large"
+                  color='primary'
+                  size='large'
                 >
                   <MenuIcon />
                 </IconButton>
@@ -230,44 +228,35 @@ function NavBar(props) {
             </Hidden>
             <Hidden smDown>
               <Typography
-                variant="h4"
+                variant='h4'
                 className={classes.brandText}
-                display="inline"
-                color="primary"
+                display='inline'
+                color='primary'
               >
                 Wa
               </Typography>
               <Typography
-                variant="h4"
+                variant='h4'
                 className={classes.brandText}
-                display="inline"
-                color="secondary"
+                display='inline'
+                color='secondary'
               >
                 Ver
               </Typography>
             </Hidden>
           </Box>
           <Box
-            display="flex"
-            justifyContent="flex-end"
-            alignItems="center"
-            width="100%"
+            display='flex'
+            justifyContent='flex-end'
+            alignItems='center'
+            width='100%'
           >
-            {isWidthUpSm && (
-              <Box mr={3}>
-                <Balance
-                  balance={2573}
-                  openAddBalanceDialog={openAddBalanceDialog}
-                />
-              </Box>
-            )}
-            <MessagePopperButton messages={messages} />
             <ListItem
               disableGutters
               className={classNames(classes.iconListItem, classes.smBordered)}
             >
               <Avatar
-                alt="profile picture"
+                alt='profile picture'
                 src={`${process.env.PUBLIC_URL}/images/logged_in/profilePicture.jpg`}
                 className={classNames(classes.accountAvatar)}
               />
@@ -275,7 +264,7 @@ function NavBar(props) {
                 <ListItemText
                   className={classes.username}
                   primary={
-                    <Typography color="textPrimary">Username</Typography>
+                    <Typography color='textPrimary'>Username</Typography>
                   }
                 />
               )}
@@ -283,9 +272,9 @@ function NavBar(props) {
           </Box>
           <IconButton
             onClick={openDrawer}
-            color="primary"
-            aria-label="Open Sidedrawer"
-            size="large"
+            color='primary'
+            aria-label='Open Sidedrawer'
+            size='large'
           >
             <SupervisorAccountIcon />
           </IconButton>
@@ -294,7 +283,7 @@ function NavBar(props) {
       </AppBar>
       <Hidden smDown>
         <Drawer //  both drawers can be combined into one for performance
-          variant="permanent"
+          variant='permanent'
           classes={{
             paper: classes.drawerPaper,
           }}
@@ -313,7 +302,7 @@ function NavBar(props) {
               >
                 <Tooltip
                   title={element.name}
-                  placement="right"
+                  placement='right'
                   key={element.name}
                 >
                   <ListItem
@@ -347,7 +336,7 @@ function NavBar(props) {
           icon: element.icon.mobile,
           onClick: element.onClick,
         }))}
-        anchor="left"
+        anchor='left'
         open={isMobileOpen}
         selectedItem={selectedTab}
         onClose={closeMobileDrawer}
