@@ -244,7 +244,7 @@ function Main(props) {
           DateTimePicker={DateTimePicker}
           transactions={transactions}
           statistics={statistics}
-          posts={topics}
+          topics={topics}
           targets={targets}
           selectDashboard={selectDashboard}
           selectPosts={selectTopics}

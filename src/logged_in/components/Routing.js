@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
-import withStyles from '@mui/styles/withStyles';
+import withStyles from "@mui/styles/withStyles";
 import Dashboard from "./dashboard/Dashboard";
 import Posts from "./posts/Posts";
 import Subscription from "./subscription/Subscription";
@@ -51,7 +51,7 @@ function Routing(props) {
     Dropzone,
     DateTimePicker,
     pushMessageToSnackbar,
-    posts,
+    topics,
     transactions,
     toggleAccountActivation,
     CardChart,
@@ -70,19 +70,19 @@ function Routing(props) {
     <div className={classes.wrapper}>
       <Switch>
         <PropsRoute
-          path="/c/posts"
+          path='/c/posts'
           component={Posts}
           EmojiTextArea={EmojiTextArea}
           ImageCropper={ImageCropper}
           Dropzone={Dropzone}
           DateTimePicker={DateTimePicker}
           pushMessageToSnackbar={pushMessageToSnackbar}
-          posts={posts}
+          posts={topics}
           setPosts={setPosts}
           selectPosts={selectPosts}
         />
         <PropsRoute
-          path="/c/subscription"
+          path='/c/subscription'
           component={Subscription}
           transactions={transactions}
           pushMessageToSnackbar={pushMessageToSnackbar}
@@ -90,7 +90,7 @@ function Routing(props) {
           openAddBalanceDialog={openAddBalanceDialog}
         />
         <PropsRoute
-          path=""
+          path=''
           component={Dashboard}
           toggleAccountActivation={toggleAccountActivation}
           pushMessageToSnackbar={pushMessageToSnackbar}
