@@ -25,7 +25,7 @@ function Main(props) {
   const { classes } = props;
   const [selectedTab, setSelectedTab] = useState(null);
   const [CardChart, setCardChart] = useState(null);
-  const [transactions, setTransactions] = useState([]);
+  const [resources, setTransactions] = useState([]);
   const [statistics, setStatistics] = useState({ views: [], profit: [] });
   const [topics, setTopics] = useState([]);
   const [targets, setTargets] = useState([]);
@@ -73,7 +73,7 @@ function Main(props) {
   }, [setStatistics]);
 
   const fetchRandomTransactions = useCallback(() => {
-    const transactions = [];
+    const resources = [];
     const iterations = 3;
     const oneMonthSeconds = Math.round(60 * 60 * 24 * 30.5);
     const transactionTemplates = [
@@ -98,7 +98,7 @@ function Main(props) {
     );
     for (let i = 0; i < iterations; i += 1) {
       const randomTransactionTemplate = transactionTemplates[i];
-      const transaction = {
+      const resource = {
         id: i,
         description: randomTransactionTemplate.description,
         balanceChange: randomTransactionTemplate.balanceChange,
@@ -106,10 +106,10 @@ function Main(props) {
         timestamp: curUnix,
       };
       curUnix += oneMonthSeconds;
-      transactions.push(transaction);
+      resources.push(resource);
     }
-    transactions.reverse();
-    setTransactions(transactions);
+    resources.reverse();
+    setTransactions(resources);
   }, [setTransactions]);
 
   const fetchTopics = useCallback(() => {
@@ -171,7 +171,7 @@ function Main(props) {
       <main className={classNames(classes.main)}>
         <Routing
           CardChart={CardChart}
-          transactions={transactions}
+          transactions={resources}
           statistics={statistics}
           topics={topics}
           targets={targets}
