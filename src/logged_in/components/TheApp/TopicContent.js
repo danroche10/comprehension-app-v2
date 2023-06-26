@@ -126,7 +126,6 @@ function TopicContent(props) {
 }
 
 TopicContent.propTypes = {
-  //openAddTopicModal: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   topics: PropTypes.arrayOf(PropTypes.object).isRequired,
   set: PropTypes.func.isRequired,
