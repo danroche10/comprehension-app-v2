@@ -28,14 +28,14 @@ const rowsPerPage = 25;
 function PostContent(props) {
   const { posts, classes } = props;
   const [page, setPage] = useState(0);
-  const [isDeletePostDialogOpen, setIsDeletePostDialogOpen] = useState(false);
-  const [isDeletePostDialogLoading, setIsDeletePostDialogLoading] =
+  const [isSelectPostDialogOpen, setIsSelectPostDialogOpen] = useState(false);
+  const [isSelectPostDialogLoading, setIsSelectPostDialogLoading] =
     useState(false);
 
   const closeSelectPostDialog = useCallback(() => {
-    setIsDeletePostDialogOpen(false);
-    setIsDeletePostDialogLoading(false);
-  }, [setIsDeletePostDialogOpen, setIsDeletePostDialogLoading]);
+    setIsSelectPostDialogOpen(false);
+    setIsSelectPostDialogLoading(false);
+  }, [setIsSelectPostDialogOpen, setIsSelectPostDialogLoading]);
 
   const selectPost = useCallback(() => {});
 
@@ -114,11 +114,11 @@ function PostContent(props) {
         labelRowsPerPage=''
       />
       <ConfirmationDialog
-        open={isDeletePostDialogOpen}
+        open={isSelectPostDialogOpen}
         title='Confirmation'
         content='Do you really want to delete the post?'
         onClose={closeSelectPostDialog}
-        loading={isDeletePostDialogLoading}
+        loading={isSelectPostDialogLoading}
         onConfirm={selectPost}
       />
     </Paper>
