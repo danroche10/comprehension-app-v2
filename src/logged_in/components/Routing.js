@@ -84,7 +84,7 @@ function Routing(props) {
         <PropsRoute
           path='/c/subscription'
           component={Subscription}
-          transactions={resources}
+          resources={resources}
           pushMessageToSnackbar={pushMessageToSnackbar}
           selectSubscription={selectSubscription}
           openAddBalanceDialog={openAddBalanceDialog}
@@ -116,7 +116,7 @@ Routing.propTypes = {
   setTargets: PropTypes.func.isRequired,
   setTopics: PropTypes.func.isRequired,
   topics: PropTypes.arrayOf(PropTypes.object).isRequired,
-  transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  resources: PropTypes.arrayOf(PropTypes.object).isRequired,
   toggleAccountActivation: PropTypes.func,
   CardChart: PropTypes.elementType,
   statistics: PropTypes.object.isRequired,

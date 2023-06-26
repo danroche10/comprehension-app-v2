@@ -6,7 +6,6 @@ import Routing from "./Routing";
 import NavBar from "./navigation/NavBar";
 import smoothScrollTop from "../../shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
-import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
 
 const styles = (theme) => ({
   main: {
@@ -72,7 +71,7 @@ function Main(props) {
     setStatistics(statistics);
   }, [setStatistics]);
 
-  const fetchRandomTransactions = useCallback(() => {
+  const fetchRandomResources = useCallback(() => {
     const resources = [];
     const iterations = 3;
     const oneMonthSeconds = Math.round(60 * 60 * 24 * 30.5);
@@ -155,18 +154,17 @@ function Main(props) {
   useEffect(() => {
     fetchRandomTargets();
     fetchRandomStatistics();
-    fetchRandomTransactions();
+    fetchRandomResources();
     fetchTopics();
   }, [
     fetchRandomTargets,
     fetchRandomStatistics,
-    fetchRandomTransactions,
+    fetchRandomResources,
     fetchTopics,
   ]);
 
   return (
     <Fragment>
-      <LazyLoadAddBalanceDialog />
       <NavBar selectedTab={selectedTab} />
       <main className={classNames(classes.main)}>
         <Routing

@@ -65,7 +65,7 @@ const rows = [
 const rowsPerPage = 25;
 
 function SubscriptionTable(props) {
-  const { transactions, theme, classes } = props;
+  const { resources, theme, classes } = props;
   const [page, setPage] = useState(0);
 
   const handleChangePage = useCallback(
@@ -75,42 +75,42 @@ function SubscriptionTable(props) {
     [setPage]
   );
 
-  if (transactions.length > 0) {
+  if (resources.length > 0) {
     return (
       <div className={classes.tableWrapper}>
         <Table aria-labelledby='tableTitle'>
-          <EnhancedTableHead rowCount={transactions.length} rows={rows} />
+          <EnhancedTableHead rowCount={resources.length} rows={rows} />
           <TableBody>
-            {transactions
+            {resources
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((transaction, index) => (
+              .map((resource, index) => (
                 <TableRow hover tabIndex={-1} key={index}>
                   <TableCell
                     component='th'
                     scope='row'
                     className={classes.firstData}
                   >
-                    {transaction.description}
+                    {resource.description}
                   </TableCell>
                   <TableCell component='th' scope='row'>
                     {true ? (
                       <ColorfulChip
-                        label={transaction.balanceChange}
+                        label={resource.balanceChange}
                         color={theme.palette.secondary.main}
                       />
                     ) : (
                       <ColorfulChip
-                        label={transaction.balanceChange}
+                        label={resource.balanceChange}
                         color={theme.palette.error.dark}
                       />
                     )}
                   </TableCell>
                   <TableCell component='th' scope='row'>
-                    {unixToDateString(transaction.timestamp)}
+                    {unixToDateString(resource.timestamp)}
                   </TableCell>
                   <TableCell component='th' scope='row'>
-                    {transaction.paidUntil
-                      ? unixToDateString(transaction.paidUntil)
+                    {resource.paidUntil
+                      ? unixToDateString(resource.paidUntil)
                       : ""}
                   </TableCell>
                 </TableRow>
@@ -119,7 +119,7 @@ function SubscriptionTable(props) {
         </Table>
         <TablePagination
           component='div'
-          count={transactions.length}
+          count={resources.length}
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{
@@ -132,8 +132,8 @@ function SubscriptionTable(props) {
           classes={{
             select: classes.dNone,
             selectIcon: classes.dNone,
-            actions: transactions.length > 0 ? classes.dBlock : classes.dNone,
-            caption: transactions.length > 0 ? classes.dBlock : classes.dNone,
+            actions: resources.length > 0 ? classes.dBlock : classes.dNone,
+            caption: resources.length > 0 ? classes.dBlock : classes.dNone,
           }}
           labelRowsPerPage=''
         />
@@ -143,7 +143,7 @@ function SubscriptionTable(props) {
   return (
     <div className={classes.contentWrapper}>
       <HighlightedInformation>
-        No transactions received yet.
+        No resources received yet.
       </HighlightedInformation>
     </div>
   );
@@ -152,7 +152,7 @@ function SubscriptionTable(props) {
 SubscriptionTable.propTypes = {
   theme: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  resources: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(SubscriptionTable);

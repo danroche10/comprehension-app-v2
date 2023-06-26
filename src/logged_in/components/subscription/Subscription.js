@@ -12,7 +12,7 @@ const styles = {
 };
 
 function Subscription(props) {
-  const { transactions, classes, openAddBalanceDialog, selectSubscription } =
+  const { resources, classes, openAddBalanceDialog, selectSubscription } =
     props;
 
   useEffect(selectSubscription, [selectSubscription]);
@@ -22,7 +22,7 @@ function Subscription(props) {
       <List disablePadding>
         <SubscriptionInfo openAddBalanceDialog={openAddBalanceDialog} />
         <Divider className={classes.divider} />
-        <SubscriptionTable transactions={transactions} />
+        <SubscriptionTable resources={resources} />
       </List>
     </Paper>
   );
