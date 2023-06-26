@@ -44,7 +44,7 @@ function Main(props) {
     useState(false);
   const [transactions, setTransactions] = useState([]);
   const [statistics, setStatistics] = useState({ views: [], profit: [] });
-  const [posts, setTopics] = useState([]);
+  const [topics, setTopics] = useState([]);
   const [targets, setTargets] = useState([]);
 
   const fetchRandomTargets = useCallback(() => {
@@ -131,7 +131,7 @@ function Main(props) {
 
   const fetchRandomPosts = useCallback(() => {
     shuffle(persons);
-    const posts = [];
+    const topics = [];
     const iterations = persons.length;
     const oneDaySeconds = 60 * 60 * 24;
     let curUnix = Math.round(
@@ -146,10 +146,10 @@ function Main(props) {
         name: person.name,
       };
       curUnix += oneDaySeconds;
-      posts.push(post);
+      topics.push(post);
     }
-    posts.reverse();
-    setTopics(posts);
+    topics.reverse();
+    setTopics(topics);
   }, [setTopics]);
 
   const selectDashboard = useCallback(() => {
@@ -244,7 +244,7 @@ function Main(props) {
           DateTimePicker={DateTimePicker}
           transactions={transactions}
           statistics={statistics}
-          posts={posts}
+          posts={topics}
           targets={targets}
           selectDashboard={selectDashboard}
           selectPosts={selectTopics}
