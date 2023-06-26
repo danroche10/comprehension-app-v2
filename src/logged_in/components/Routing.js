@@ -52,7 +52,7 @@ function Routing(props) {
     DateTimePicker,
     pushMessageToSnackbar,
     topics,
-    transactions,
+    resources,
     toggleAccountActivation,
     CardChart,
     statistics,
@@ -84,7 +84,7 @@ function Routing(props) {
         <PropsRoute
           path='/c/subscription'
           component={Subscription}
-          transactions={transactions}
+          transactions={resources}
           pushMessageToSnackbar={pushMessageToSnackbar}
           selectSubscription={selectSubscription}
           openAddBalanceDialog={openAddBalanceDialog}
