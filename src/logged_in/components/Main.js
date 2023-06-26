@@ -46,7 +46,6 @@ function Main(props) {
   const [statistics, setStatistics] = useState({ views: [], profit: [] });
   const [posts, setPosts] = useState([]);
   const [targets, setTargets] = useState([]);
-  const [isAccountActivated, setIsAccountActivated] = useState(false);
 
   const fetchRandomTargets = useCallback(() => {
     const targets = [];
@@ -238,7 +237,6 @@ function Main(props) {
       <NavBar selectedTab={selectedTab} />
       <main className={classNames(classes.main)}>
         <Routing
-          isAccountActivated={isAccountActivated}
           ImageCropper={ImageCropper}
           EmojiTextArea={EmojiTextArea}
           CardChart={CardChart}

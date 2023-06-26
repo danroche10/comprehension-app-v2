@@ -25,19 +25,19 @@ const styles = {
 
 const rowsPerPage = 25;
 
-function PostContent(props) {
-  const { posts, classes } = props;
+function TopicContent(props) {
+  const { topics, classes } = props;
   const [page, setPage] = useState(0);
-  const [isSelectPostDialogOpen, setIsSelectPostDialogOpen] = useState(false);
-  const [isSelectPostDialogLoading, setIsSelectPostDialogLoading] =
+  const [isSelectTopicDialogOpen, setIsSelectTopicDialogOpen] = useState(false);
+  const [isSelectTopicDialogLoading, setIsSelectTopicDialogLoading] =
     useState(false);
 
-  const closeSelectPostDialog = useCallback(() => {
-    setIsSelectPostDialogOpen(false);
-    setIsSelectPostDialogLoading(false);
-  }, [setIsSelectPostDialogOpen, setIsSelectPostDialogLoading]);
+  const closeSelectTopicDialog = useCallback(() => {
+    setIsSelectTopicDialogOpen(false);
+    setIsSelectTopicDialogLoading(false);
+  }, [setIsSelectTopicDialogOpen, setIsSelectTopicDialogLoading]);
 
-  const selectPost = useCallback(() => {});
+  const selectTopic = useCallback(() => {});
 
   const onPick = useCallback(() => {}, []);
 
@@ -49,23 +49,23 @@ function PostContent(props) {
   );
 
   const printImageGrid = useCallback(() => {
-    if (posts.length > 0) {
+    if (topics.length > 0) {
       return (
         <Box p={1}>
           <Grid container spacing={1}>
-            {posts
+            {topics
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((post) => (
-                <Grid item xs={6} sm={4} md={3} key={post.id}>
+              .map((topic) => (
+                <Grid item xs={6} sm={4} md={3} key={topic.id}>
                   <SelfAligningImage
-                    src={post.src}
-                    title={post.name}
-                    timeStamp={post.timestamp}
+                    src={topic.src}
+                    title={topic.name}
+                    timeStamp={topic.timestamp}
                     options={[
                       {
                         name: "Select",
                         onClick: () => {
-                          onPick(post);
+                          onPick(topic);
                         },
                         icon: <DeleteIcon />,
                       },
@@ -84,7 +84,7 @@ function PostContent(props) {
         </HighlightedInformation>
       </Box>
     );
-  }, [posts, onPick, page]);
+  }, [topics, onPick, page]);
 
   return (
     <Paper>
@@ -95,7 +95,7 @@ function PostContent(props) {
       {printImageGrid()}
       <TablePagination
         component='div'
-        count={posts.length}
+        count={topics.length}
         rowsPerPage={rowsPerPage}
         page={page}
         backIconButtonProps={{
@@ -108,29 +108,29 @@ function PostContent(props) {
         classes={{
           select: classes.dNone,
           selectIcon: classes.dNone,
-          actions: posts.length > 0 ? classes.dBlock : classes.dNone,
-          caption: posts.length > 0 ? classes.dBlock : classes.dNone,
+          actions: topics.length > 0 ? classes.dBlock : classes.dNone,
+          caption: topics.length > 0 ? classes.dBlock : classes.dNone,
         }}
         labelRowsPerPage=''
       />
       <ConfirmationDialog
-        open={isSelectPostDialogOpen}
+        open={isSelectTopicDialogOpen}
         title='Confirmation'
-        content='Do you really want to delete the post?'
-        onClose={closeSelectPostDialog}
-        loading={isSelectPostDialogLoading}
-        onConfirm={selectPost}
+        content='change this message'
+        onClose={closeSelectTopicDialog}
+        loading={isSelectTopicDialogLoading}
+        onConfirm={selectTopic}
       />
     </Paper>
   );
 }
 
-PostContent.propTypes = {
-  openAddPostModal: PropTypes.func.isRequired,
+TopicContent.propTypes = {
+  //openAddTopicModal: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
-  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
-  setPosts: PropTypes.func.isRequired,
+  topics: PropTypes.arrayOf(PropTypes.object).isRequired,
+  set: PropTypes.func.isRequired,
   pushMessageToSnackbar: PropTypes.func,
 };
 
-export default withStyles(styles)(PostContent);
+export default withStyles(styles)(TopicContent);

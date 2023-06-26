@@ -12,7 +12,6 @@ import EnhancedTableHead from "../../../shared/components/EnhancedTableHead";
 import ColorfulChip from "../../../shared/components/ColorfulChip";
 import unixToDateString from "../../../shared/functions/unixToDateString";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
-import currencyPrettyPrint from "../../../shared/functions/currencyPrettyPrint";
 
 const styles = (theme) => ({
   tableWrapper: {

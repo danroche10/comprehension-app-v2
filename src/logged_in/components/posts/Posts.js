@@ -11,7 +11,7 @@ function Posts(props) {
 
   return (
     <PostContent
-      posts={posts}
+      topics={posts}
       setPosts={setPosts}
       pushMessageToSnackbar={pushMessageToSnackbar}
     />
