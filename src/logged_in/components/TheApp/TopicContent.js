@@ -37,7 +37,7 @@ function TopicContent(props) {
     setIsSelectTopicDialogLoading(false);
   }, [setIsSelectTopicDialogOpen, setIsSelectTopicDialogLoading]);
 
-  const selectTopic = useCallback(() => {});
+  const selectTopic = useCallback(() => {}, []);
 
   const onPick = useCallback(() => {}, []);
 

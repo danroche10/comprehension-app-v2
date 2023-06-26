@@ -165,7 +165,7 @@ function NavBar(props) {
       },
     },
     {
-      link: "/c/posts",
+      link: "/c/app",
       name: "Posts",
       onClick: closeMobileDrawer,
       icon: {

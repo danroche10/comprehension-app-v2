@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import PostContent from "./PostContent";
+import TopicContent from "./TopicContent";
 
-function Posts(props) {
+function Topics(props) {
   const { selectTopics, pushMessageToSnackbar, topics, setTopics } = props;
 
   useEffect(() => {
@@ -10,7 +10,7 @@ function Posts(props) {
   }, [selectTopics]);
 
   return (
-    <PostContent
+    <TopicContent
       topics={topics}
       setTopics={setTopics}
       pushMessageToSnackbar={pushMessageToSnackbar}
@@ -18,7 +18,7 @@ function Posts(props) {
   );
 }
 
-Posts.propTypes = {
+Topics.propTypes = {
   EmojiTextArea: PropTypes.elementType,
   ImageCropper: PropTypes.elementType,
   Dropzone: PropTypes.elementType,
@@ -29,4 +29,4 @@ Posts.propTypes = {
   selectTopics: PropTypes.func.isRequired,
 };
 
-export default Posts;
+export default Topics;

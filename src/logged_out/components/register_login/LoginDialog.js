@@ -2,8 +2,14 @@ import React, { useState, useCallback, useRef, Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withRouter } from "react-router-dom";
-import { TextField, Button, Checkbox, Typography, FormControlLabel } from "@mui/material";
-import withStyles from '@mui/styles/withStyles';
+import {
+  TextField,
+  Button,
+  Checkbox,
+  Typography,
+  FormControlLabel,
+} from "@mui/material";
+import withStyles from "@mui/styles/withStyles";
 import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
@@ -59,7 +65,7 @@ function LoginDialog(props) {
       }, 1500);
     } else {
       setTimeout(() => {
-        history.push("/c/dashboard");
+        history.push("/c/app");
       }, 150);
     }
   }, [setIsLoading, loginEmail, loginPassword, history, setStatus]);
@@ -75,20 +81,20 @@ function LoginDialog(props) {
           login();
         }}
         hideBackdrop
-        headline="Login"
+        headline='Login'
         content={
           <Fragment>
             <TextField
-              variant="outlined"
-              margin="normal"
+              variant='outlined'
+              margin='normal'
               error={status === "invalidEmail"}
               required
               fullWidth
-              label="Email Address"
+              label='Email Address'
               inputRef={loginEmail}
               autoFocus
-              autoComplete="off"
-              type="email"
+              autoComplete='off'
+              type='email'
               onChange={() => {
                 if (status === "invalidEmail") {
                   setStatus(null);
@@ -101,14 +107,14 @@ function LoginDialog(props) {
               FormHelperTextProps={{ error: true }}
             />
             <VisibilityPasswordTextField
-              variant="outlined"
-              margin="normal"
+              variant='outlined'
+              margin='normal'
               required
               fullWidth
               error={status === "invalidPassword"}
-              label="Password"
+              label='Password'
               inputRef={loginPassword}
-              autoComplete="off"
+              autoComplete='off'
               onChange={() => {
                 if (status === "invalidPassword") {
                   setStatus(null);
@@ -130,8 +136,8 @@ function LoginDialog(props) {
             />
             <FormControlLabel
               className={classes.formControlLabel}
-              control={<Checkbox color="primary" />}
-              label={<Typography variant="body1">Remember me</Typography>}
+              control={<Checkbox color='primary' />}
+              label={<Typography variant='body1'>Remember me</Typography>}
             />
             {status === "verificationEmailSend" ? (
               <HighlightedInformation>
@@ -150,26 +156,26 @@ function LoginDialog(props) {
         actions={
           <Fragment>
             <Button
-              type="submit"
+              type='submit'
               fullWidth
-              variant="contained"
-              color="secondary"
+              variant='contained'
+              color='secondary'
               disabled={isLoading}
-              size="large"
+              size='large'
             >
               Login
               {isLoading && <ButtonCircularProgress />}
             </Button>
             <Typography
-              align="center"
+              align='center'
               className={classNames(
                 classes.forgotPassword,
                 isLoading ? classes.disabledText : null
               )}
-              color="primary"
+              color='primary'
               onClick={isLoading ? null : openChangePasswordDialog}
               tabIndex={0}
-              role="button"
+              role='button'
               onKeyDown={(event) => {
                 // For screenreaders listen to space and enter events
                 if (

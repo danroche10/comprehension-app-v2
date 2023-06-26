@@ -129,7 +129,7 @@ function Main(props) {
     setTransactions(transactions);
   }, [setTransactions]);
 
-  const fetchRandomPosts = useCallback(() => {
+  const fetchRandomTopics = useCallback(() => {
     shuffle(persons);
     const topics = [];
     const iterations = persons.length;
@@ -223,12 +223,12 @@ function Main(props) {
     fetchRandomTargets();
     fetchRandomStatistics();
     fetchRandomTransactions();
-    fetchRandomPosts();
+    fetchRandomTopics();
   }, [
     fetchRandomTargets,
     fetchRandomStatistics,
     fetchRandomTransactions,
-    fetchRandomPosts,
+    fetchRandomTopics,
   ]);
 
   return (
