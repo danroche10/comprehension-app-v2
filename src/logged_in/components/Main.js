@@ -247,7 +247,7 @@ function Main(props) {
           topics={topics}
           targets={targets}
           selectDashboard={selectDashboard}
-          selectPosts={selectTopics}
+          selectTopics={selectTopics}
           selectSubscription={selectSubscription}
           setTargets={setTargets}
           setTopics={setTopics}
