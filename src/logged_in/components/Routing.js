@@ -58,7 +58,7 @@ function Routing(props) {
     statistics,
     targets,
     setTargets,
-    setPosts,
+    setTopics,
     isAccountActivated,
     selectDashboard,
     selectPosts,
@@ -78,7 +78,7 @@ function Routing(props) {
           DateTimePicker={DateTimePicker}
           pushMessageToSnackbar={pushMessageToSnackbar}
           posts={topics}
-          setPosts={setPosts}
+          setTopics={setTopics}
           selectPosts={selectPosts}
         />
         <PropsRoute
@@ -114,8 +114,8 @@ Routing.propTypes = {
   DateTimePicker: PropTypes.elementType,
   pushMessageToSnackbar: PropTypes.func,
   setTargets: PropTypes.func.isRequired,
-  setPosts: PropTypes.func.isRequired,
-  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setTopics: PropTypes.func.isRequired,
+  topics: PropTypes.arrayOf(PropTypes.object).isRequired,
   transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
   toggleAccountActivation: PropTypes.func,
   CardChart: PropTypes.elementType,
