@@ -44,7 +44,7 @@ function Main(props) {
     useState(false);
   const [transactions, setTransactions] = useState([]);
   const [statistics, setStatistics] = useState({ views: [], profit: [] });
-  const [posts, setPosts] = useState([]);
+  const [posts, setTopics] = useState([]);
   const [targets, setTargets] = useState([]);
 
   const fetchRandomTargets = useCallback(() => {
@@ -149,8 +149,8 @@ function Main(props) {
       posts.push(post);
     }
     posts.reverse();
-    setPosts(posts);
-  }, [setPosts]);
+    setTopics(posts);
+  }, [setTopics]);
 
   const selectDashboard = useCallback(() => {
     smoothScrollTop();
@@ -169,7 +169,7 @@ function Main(props) {
     setHasFetchedCardChart,
   ]);
 
-  const selectPosts = useCallback(() => {
+  const selectTopics = useCallback(() => {
     smoothScrollTop();
     document.title = "WaVer - Posts";
     setSelectedTab("Posts");
@@ -247,10 +247,10 @@ function Main(props) {
           posts={posts}
           targets={targets}
           selectDashboard={selectDashboard}
-          selectPosts={selectPosts}
+          selectPosts={selectTopics}
           selectSubscription={selectSubscription}
           setTargets={setTargets}
-          setPosts={setPosts}
+          setTopics={setTopics}
         />
       </main>
     </Fragment>

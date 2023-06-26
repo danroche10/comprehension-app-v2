@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import PostContent from "./PostContent";
 
 function Posts(props) {
-  const { selectPosts, pushMessageToSnackbar, posts, setPosts } = props;
+  const { selectPosts, pushMessageToSnackbar, posts, setTopics } = props;
 
   useEffect(() => {
     selectPosts();
@@ -12,7 +12,7 @@ function Posts(props) {
   return (
     <PostContent
       topics={posts}
-      setPosts={setPosts}
+      setTopics={setTopics}
       pushMessageToSnackbar={pushMessageToSnackbar}
     />
   );
@@ -24,7 +24,7 @@ Posts.propTypes = {
   Dropzone: PropTypes.elementType,
   DateTimePicker: PropTypes.elementType,
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
-  setPosts: PropTypes.func.isRequired,
+  setTopics: PropTypes.func.isRequired,
   pushMessageToSnackbar: PropTypes.func,
   selectPosts: PropTypes.func.isRequired,
 };
