@@ -13,7 +13,7 @@ import {
   AccordionSummary,
   Typography,
 } from "@mui/material";
-import withStyles from '@mui/styles/withStyles';
+import withStyles from "@mui/styles/withStyles";
 import PlayCirlceOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -84,15 +84,10 @@ const rows = [
 const rowsPerPage = 25;
 
 function CustomTable(props) {
-  const { pushMessageToSnackbar, classes, targets, setTargets } = props;
+  const { classes, targets } = props;
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState(null);
   const [page, setPage] = useState(0);
-  const [isDeleteTargetDialogOpen, setIsDeleteTargetDialogOpen] = useState(
-    false
-  );
-  const [deleteTargetDialogRow, setDeleteTargetDialogRow] = useState(null);
-  const [isDeleteTargetLoading, setIsDeleteTargetLoading] = useState(false);
 
   const handleRequestSort = useCallback(
     (__, property) => {
@@ -107,30 +102,6 @@ function CustomTable(props) {
     [setOrder, setOrderBy, order, orderBy]
   );
 
-  const deleteTarget = useCallback(() => {
-    setIsDeleteTargetLoading(true);
-    setTimeout(() => {
-      setIsDeleteTargetDialogOpen(false);
-      setIsDeleteTargetLoading(false);
-      const _targets = [...targets];
-      const index = _targets.findIndex(
-        (element) => element.id === deleteTargetDialogRow.id
-      );
-      _targets.splice(index, 1);
-      setTargets(_targets);
-      pushMessageToSnackbar({
-        text: "Your friend has been removed",
-      });
-    }, 1500);
-  }, [
-    setIsDeleteTargetDialogOpen,
-    setIsDeleteTargetLoading,
-    pushMessageToSnackbar,
-    setTargets,
-    deleteTargetDialogRow,
-    targets,
-  ]);
-
   const handleChangePage = useCallback(
     (_, page) => {
       setPage(page);
@@ -138,63 +109,18 @@ function CustomTable(props) {
     [setPage]
   );
 
-  const handleDeleteTargetDialogClose = useCallback(() => {
-    setIsDeleteTargetDialogOpen(false);
-  }, [setIsDeleteTargetDialogOpen]);
-
-  const handleDeleteTargetDialogOpen = useCallback(
-    (row) => {
-      setIsDeleteTargetDialogOpen(true);
-      setDeleteTargetDialogRow(row);
-    },
-    [setIsDeleteTargetDialogOpen, setDeleteTargetDialogRow]
-  );
-
-  const toggleTarget = useCallback(
-    (row) => {
-      const _targets = [...targets];
-      const index = _targets.findIndex((element) => element.id === row.id);
-      row.isActivated = !row.isActivated;
-      _targets[index] = row;
-      if (row.isActivated) {
-        pushMessageToSnackbar({
-          text: "The row is now activated",
-        });
-      } else {
-        pushMessageToSnackbar({
-          text: "The row is now deactivated",
-        });
-      }
-      setTargets(_targets);
-    },
-    [pushMessageToSnackbar, targets, setTargets]
-  );
+  const toggleTarget = useCallback((row) => {}, []);
 
   return (
     <Accordion>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography>Some user data</Typography>
       </AccordionSummary>
-      <ConfirmationDialog
-        open={isDeleteTargetDialogOpen}
-        title="Confirmation"
-        content={
-          deleteTargetDialogRow ? (
-            <span>
-              {"Do you really want to remove the friend "}
-              <b>{deleteTargetDialogRow.name}</b>
-              {" from your list?"}
-            </span>
-          ) : null
-        }
-        onClose={handleDeleteTargetDialogClose}
-        onConfirm={deleteTarget}
-        loading={isDeleteTargetLoading}
-      />
-      <Box width="100%">
+      <ConfirmationDialog />
+      <Box width='100%'>
         <div className={classes.tableWrapper}>
           {targets.length > 0 ? (
-            <Table aria-labelledby="tableTitle">
+            <Table aria-labelledby='tableTitle'>
               <EnhancedTableHead
                 order={order}
                 orderBy={orderBy}
@@ -208,8 +134,8 @@ function CustomTable(props) {
                   .map((row, index) => (
                     <TableRow hover tabIndex={-1} key={index}>
                       <TableCell
-                        component="th"
-                        scope="row"
+                        component='th'
+                        scope='row'
                         className={classes.firstData}
                       >
                         <Avatar
@@ -217,31 +143,32 @@ function CustomTable(props) {
                           src={row.profilePicUrl}
                         />
                       </TableCell>
-                      <TableCell component="th" scope="row">
+                      <TableCell component='th' scope='row'>
                         {row.name}
                       </TableCell>
-                      <TableCell component="th" scope="row">
+                      <TableCell component='th' scope='row'>
                         {row.number1}
                       </TableCell>
-                      <TableCell component="th" scope="row">
+                      <TableCell component='th' scope='row'>
                         {row.number2}
                       </TableCell>
-                      <TableCell component="th" scope="row">
+                      <TableCell component='th' scope='row'>
                         {row.number3}
                       </TableCell>
-                      <TableCell component="th" scope="row">
+                      <TableCell component='th' scope='row'>
                         {row.number4}
                       </TableCell>
-                      <TableCell component="th" scope="row">
-                        <Box display="flex" justifyContent="flex-end">
+                      <TableCell component='th' scope='row'>
+                        <Box display='flex' justifyContent='flex-end'>
                           {row.isActivated ? (
                             <IconButton
                               className={classes.iconButton}
                               onClick={() => {
                                 toggleTarget(row);
                               }}
-                              aria-label="Pause"
-                              size="large">
+                              aria-label='Pause'
+                              size='large'
+                            >
                               <PauseCircleOutlineIcon
                                 className={classes.blackIcon}
                               />
@@ -249,22 +176,21 @@ function CustomTable(props) {
                           ) : (
                             <IconButton
                               className={classes.iconButton}
-                              color="primary"
+                              color='primary'
                               onClick={() => {
                                 toggleTarget(row);
                               }}
-                              aria-label="Resume"
-                              size="large">
+                              aria-label='Resume'
+                              size='large'
+                            >
                               <PlayCirlceOutlineIcon />
                             </IconButton>
                           )}
                           <IconButton
                             className={classes.iconButton}
-                            onClick={() => {
-                              handleDeleteTargetDialogOpen(row);
-                            }}
-                            aria-label="Delete"
-                            size="large">
+                            aria-label='Delete'
+                            size='large'
+                          >
                             <DeleteIcon className={classes.blackIcon} />
                           </IconButton>
                         </Box>
@@ -283,7 +209,7 @@ function CustomTable(props) {
         </div>
         <div className={classes.alignRight}>
           <TablePagination
-            component="div"
+            component='div'
             count={targets.length}
             rowsPerPage={rowsPerPage}
             page={page}
@@ -300,7 +226,7 @@ function CustomTable(props) {
               actions: targets.length > 0 ? classes.dBlock : classes.dNone,
               caption: targets.length > 0 ? classes.dBlock : classes.dNone,
             }}
-            labelRowsPerPage=""
+            labelRowsPerPage=''
           />
         </div>
       </Box>

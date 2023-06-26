@@ -14,12 +14,10 @@ import {
   MenuItem,
   FormControl,
   Select,
-  Box,
 } from "@mui/material";
 import withStyles from "@mui/styles/withStyles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Bordered from "../../../shared/components/Bordered";
-import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 
 const styles = (theme) => ({
   numberInput: {
@@ -41,9 +39,7 @@ const styles = (theme) => ({
 const inputOptions = ["None", "Slow", "Normal", "Fast"];
 
 function Settings1(props) {
-  const { classes, pushMessageToSnackbar } = props;
-  const [isSaveLoading, setIsSaveLoading] = useState(false);
-  const [isDefaultLoading, setIsDefaultLoading] = useState(false);
+  const { classes } = props;
   const [option1, setOption1] = useState("None");
   const [option2, setOption2] = useState("None");
   const [option3, setOption3] = useState("None");
@@ -91,46 +87,6 @@ function Settings1(props) {
     [setOption1, setOption2, setOption3, setOption4, setOption5, setOption6]
   );
 
-  const resetState = useCallback(() => {
-    setIsSaveLoading(false);
-    setIsDefaultLoading(false);
-    setOption1("None");
-    setOption2("None");
-    setOption3("None");
-    setOption4("None");
-    setOption5("2 Days");
-    setOption6(7500);
-  }, [
-    setIsSaveLoading,
-    setIsDefaultLoading,
-    setOption1,
-    setOption2,
-    setOption3,
-    setOption4,
-    setOption5,
-    setOption6,
-  ]);
-
-  const onSetDefault = useCallback(() => {
-    setIsDefaultLoading(true);
-    setTimeout(() => {
-      pushMessageToSnackbar({
-        text: "Your settings have been reset to default",
-      });
-      resetState();
-    }, 1500);
-  }, [pushMessageToSnackbar, resetState]);
-
-  const onSubmit = useCallback(() => {
-    setIsSaveLoading(true);
-    setTimeout(() => {
-      pushMessageToSnackbar({
-        text: "Your settings have been saved",
-      });
-      setIsSaveLoading(false);
-    }, 1500);
-  }, [setIsSaveLoading, pushMessageToSnackbar]);
-
   const inputs = [
     {
       state: option1,
@@ -164,15 +120,15 @@ function Settings1(props) {
           <Bordered disableVerticalPadding disableBorderRadius>
             {inputs.map((element, index) => (
               <ListItem
-                className="listItemLeftPadding"
+                className='listItemLeftPadding'
                 disableGutters
                 divider
                 key={index}
               >
                 <ListItemText>
-                  <Typography variant="body2">{element.label}</Typography>
+                  <Typography variant='body2'>{element.label}</Typography>
                 </ListItemText>
-                <FormControl variant="outlined">
+                <FormControl variant='outlined'>
                   <ListItemSecondaryAction
                     className={classes.ListItemSecondaryAction}
                   >
@@ -199,11 +155,11 @@ function Settings1(props) {
                 </FormControl>
               </ListItem>
             ))}
-            <ListItem className="listItemLeftPadding" disableGutters divider>
+            <ListItem className='listItemLeftPadding' disableGutters divider>
               <ListItemText>
-                <Typography variant="body2">Option 5</Typography>
+                <Typography variant='body2'>Option 5</Typography>
               </ListItemText>
-              <FormControl variant="outlined">
+              <FormControl variant='outlined'>
                 <ListItemSecondaryAction
                   className={classes.ListItemSecondaryAction}
                 >
@@ -212,7 +168,7 @@ function Settings1(props) {
                     onChange={handleChange}
                     input={
                       <OutlinedInput
-                        name="option5"
+                        name='option5'
                         labelWidth={0}
                         className={classes.numberInput}
                         classes={{ input: classes.numberInputInput }}
@@ -237,19 +193,19 @@ function Settings1(props) {
                 </ListItemSecondaryAction>
               </FormControl>
             </ListItem>
-            <ListItem className="listItemLeftPadding" disableGutters>
+            <ListItem className='listItemLeftPadding' disableGutters>
               <ListItemText>
-                <Typography variant="body2">Option 6</Typography>
+                <Typography variant='body2'>Option 6</Typography>
               </ListItemText>
-              <FormControl variant="outlined">
+              <FormControl variant='outlined'>
                 <ListItemSecondaryAction
                   className={classes.ListItemSecondaryAction}
                 >
                   <OutlinedInput
                     labelWidth={0}
-                    name="option6"
+                    name='option6'
                     value={option6}
-                    type="number"
+                    type='number'
                     onChange={handleChange}
                     className={classes.numberInput}
                     classes={{ input: classes.numberInputInput }}
@@ -262,21 +218,8 @@ function Settings1(props) {
         </List>
       </AccordionDetails>
       <AccordionDetails className={classes.accordionDetails}>
-        <Box mr={1}>
-          <Button
-            onClick={onSetDefault}
-            disabled={isSaveLoading || isDefaultLoading}
-          >
-            Default {isDefaultLoading && <ButtonCircularProgress />}
-          </Button>
-        </Box>
-        <Button
-          variant="contained"
-          color="secondary"
-          disabled={isSaveLoading || isDefaultLoading}
-          onClick={onSubmit}
-        >
-          Save {isSaveLoading && <ButtonCircularProgress />}
+        <Button variant='contained' color='secondary'>
+          Save
         </Button>
       </AccordionDetails>
     </Accordion>
