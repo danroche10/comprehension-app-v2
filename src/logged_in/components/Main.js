@@ -21,27 +21,10 @@ const styles = (theme) => ({
   },
 });
 
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
-
 function Main(props) {
   const { classes } = props;
   const [selectedTab, setSelectedTab] = useState(null);
   const [CardChart, setCardChart] = useState(null);
-  const [hasFetchedCardChart, setHasFetchedCardChart] = useState(false);
-  const [EmojiTextArea, setEmojiTextArea] = useState(null);
-  const [hasFetchedEmojiTextArea, setHasFetchedEmojiTextArea] = useState(false);
-  const [ImageCropper, setImageCropper] = useState(null);
-  const [hasFetchedImageCropper, setHasFetchedImageCropper] = useState(false);
-  const [Dropzone, setDropzone] = useState(null);
-  const [hasFetchedDropzone, setHasFetchedDropzone] = useState(false);
-  const [DateTimePicker, setDateTimePicker] = useState(null);
-  const [hasFetchedDateTimePicker, setHasFetchedDateTimePicker] =
-    useState(false);
   const [transactions, setTransactions] = useState([]);
   const [statistics, setStatistics] = useState({ views: [], profit: [] });
   const [topics, setTopics] = useState([]);
@@ -129,8 +112,7 @@ function Main(props) {
     setTransactions(transactions);
   }, [setTransactions]);
 
-  const fetchRandomTopics = useCallback(() => {
-    shuffle(persons);
+  const fetchTopics = useCallback(() => {
     const topics = [];
     const iterations = persons.length;
     const oneDaySeconds = 60 * 60 * 24;
@@ -156,62 +138,13 @@ function Main(props) {
     smoothScrollTop();
     document.title = "ComPo - Dashboard";
     setSelectedTab("Dashboard");
-    if (!hasFetchedCardChart) {
-      setHasFetchedCardChart(true);
-      import("../../shared/components/CardChart").then((Component) => {
-        setCardChart(Component.default);
-      });
-    }
-  }, [
-    setSelectedTab,
-    setCardChart,
-    hasFetchedCardChart,
-    setHasFetchedCardChart,
-  ]);
+  }, [setSelectedTab, setCardChart]);
 
   const selectTopics = useCallback(() => {
     smoothScrollTop();
     document.title = "WaVer - Posts";
     setSelectedTab("Posts");
-    if (!hasFetchedEmojiTextArea) {
-      setHasFetchedEmojiTextArea(true);
-      import("../../shared/components/EmojiTextArea").then((Component) => {
-        setEmojiTextArea(Component.default);
-      });
-    }
-    if (!hasFetchedImageCropper) {
-      setHasFetchedImageCropper(true);
-      import("../../shared/components/ImageCropper").then((Component) => {
-        setImageCropper(Component.default);
-      });
-    }
-    if (!hasFetchedDropzone) {
-      setHasFetchedDropzone(true);
-      import("../../shared/components/Dropzone").then((Component) => {
-        setDropzone(Component.default);
-      });
-    }
-    if (!hasFetchedDateTimePicker) {
-      setHasFetchedDateTimePicker(true);
-      import("../../shared/components/DateTimePicker").then((Component) => {
-        setDateTimePicker(Component.default);
-      });
-    }
-  }, [
-    setSelectedTab,
-    setEmojiTextArea,
-    setImageCropper,
-    setDropzone,
-    setDateTimePicker,
-    hasFetchedEmojiTextArea,
-    setHasFetchedEmojiTextArea,
-    hasFetchedImageCropper,
-    setHasFetchedImageCropper,
-    hasFetchedDropzone,
-    setHasFetchedDropzone,
-    hasFetchedDateTimePicker,
-    setHasFetchedDateTimePicker,
-  ]);
+  }, [setSelectedTab]);
 
   const selectSubscription = useCallback(() => {
     smoothScrollTop();
@@ -223,12 +156,12 @@ function Main(props) {
     fetchRandomTargets();
     fetchRandomStatistics();
     fetchRandomTransactions();
-    fetchRandomTopics();
+    fetchTopics();
   }, [
     fetchRandomTargets,
     fetchRandomStatistics,
     fetchRandomTransactions,
-    fetchRandomTopics,
+    fetchTopics,
   ]);
 
   return (
@@ -237,11 +170,7 @@ function Main(props) {
       <NavBar selectedTab={selectedTab} />
       <main className={classNames(classes.main)}>
         <Routing
-          ImageCropper={ImageCropper}
-          EmojiTextArea={EmojiTextArea}
           CardChart={CardChart}
-          Dropzone={Dropzone}
-          DateTimePicker={DateTimePicker}
           transactions={transactions}
           statistics={statistics}
           topics={topics}
