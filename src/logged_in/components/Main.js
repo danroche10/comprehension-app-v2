@@ -4,7 +4,6 @@ import classNames from "classnames";
 import withStyles from "@mui/styles/withStyles";
 import Routing from "./Routing";
 import NavBar from "./navigation/NavBar";
-import ConsecutiveSnackbarMessages from "../../shared/components/ConsecutiveSnackbarMessages";
 import smoothScrollTop from "../../shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
 import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
@@ -47,10 +46,7 @@ function Main(props) {
   const [statistics, setStatistics] = useState({ views: [], profit: [] });
   const [posts, setPosts] = useState([]);
   const [targets, setTargets] = useState([]);
-  const [messages, setMessages] = useState([]);
   const [isAccountActivated, setIsAccountActivated] = useState(false);
-  const [isAddBalanceDialogOpen, setIsAddBalanceDialogOpen] = useState(false);
-  const [pushMessageToSnackbar, setPushMessageToSnackbar] = useState(null);
 
   const fetchRandomTargets = useCallback(() => {
     const targets = [];
@@ -70,21 +66,6 @@ function Main(props) {
     }
     setTargets(targets);
   }, [setTargets]);
-
-  const openAddBalanceDialog = useCallback(() => {
-    setIsAddBalanceDialogOpen(true);
-  }, [setIsAddBalanceDialogOpen]);
-
-  const closeAddBalanceDialog = useCallback(() => {
-    setIsAddBalanceDialogOpen(false);
-  }, [setIsAddBalanceDialogOpen]);
-
-  const onPaymentSuccess = useCallback(() => {
-    pushMessageToSnackbar({
-      text: "Your balance has been updated.",
-    });
-    setIsAddBalanceDialogOpen(false);
-  }, [pushMessageToSnackbar, setIsAddBalanceDialogOpen]);
 
   const fetchRandomStatistics = useCallback(() => {
     const statistics = { profit: [], views: [] };
@@ -117,17 +98,17 @@ function Main(props) {
       {
         description: "Ancient Greece",
         isSubscription: true,
-        balanceChange: -1499,
+        balanceChange: "Greek Philosophers and Thinkers",
       },
       {
         description: "Anglo Saxons",
         isSubscription: true,
-        balanceChange: -9999,
+        balanceChange: "Anglo-Saxon Kings and Queens",
       },
       {
         description: "Early civilisations in the Americas",
         isSubscription: false,
-        balanceChange: 5000,
+        balanceChange: "Native American Tribes",
       },
     ];
     let curUnix = Math.round(
@@ -148,29 +129,6 @@ function Main(props) {
     transactions.reverse();
     setTransactions(transactions);
   }, [setTransactions]);
-
-  const fetchRandomMessages = useCallback(() => {
-    shuffle(persons);
-    const messages = [];
-    const iterations = persons.length;
-    const oneDaySeconds = 60 * 60 * 24;
-    let curUnix = Math.round(
-      new Date().getTime() / 1000 - iterations * oneDaySeconds
-    );
-    for (let i = 0; i < iterations; i += 1) {
-      const person = persons[i];
-      const message = {
-        id: i,
-        src: person.src,
-        date: curUnix,
-        text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr sed.",
-      };
-      curUnix += oneDaySeconds;
-      messages.push(message);
-    }
-    messages.reverse();
-    setMessages(messages);
-  }, [setMessages]);
 
   const fetchRandomPosts = useCallback(() => {
     shuffle(persons);
@@ -195,24 +153,9 @@ function Main(props) {
     setPosts(posts);
   }, [setPosts]);
 
-  const toggleAccountActivation = useCallback(() => {
-    if (pushMessageToSnackbar) {
-      if (isAccountActivated) {
-        pushMessageToSnackbar({
-          text: "Your account is now deactivated.",
-        });
-      } else {
-        pushMessageToSnackbar({
-          text: "Your account is now activated.",
-        });
-      }
-    }
-    setIsAccountActivated(!isAccountActivated);
-  }, [pushMessageToSnackbar, isAccountActivated, setIsAccountActivated]);
-
   const selectDashboard = useCallback(() => {
     smoothScrollTop();
-    document.title = "WaVer - Dashboard";
+    document.title = "ComPo - Dashboard";
     setSelectedTab("Dashboard");
     if (!hasFetchedCardChart) {
       setHasFetchedCardChart(true);
@@ -277,42 +220,22 @@ function Main(props) {
     setSelectedTab("Subscription");
   }, [setSelectedTab]);
 
-  const getPushMessageFromChild = useCallback(
-    (pushMessage) => {
-      setPushMessageToSnackbar(() => pushMessage);
-    },
-    [setPushMessageToSnackbar]
-  );
-
   useEffect(() => {
     fetchRandomTargets();
     fetchRandomStatistics();
     fetchRandomTransactions();
-    fetchRandomMessages();
     fetchRandomPosts();
   }, [
     fetchRandomTargets,
     fetchRandomStatistics,
     fetchRandomTransactions,
-    fetchRandomMessages,
     fetchRandomPosts,
   ]);
 
   return (
     <Fragment>
-      <LazyLoadAddBalanceDialog
-        open={isAddBalanceDialogOpen}
-        onClose={closeAddBalanceDialog}
-        onSuccess={onPaymentSuccess}
-      />
-      <NavBar
-        selectedTab={selectedTab}
-        messages={messages}
-        openAddBalanceDialog={openAddBalanceDialog}
-      />
-      <ConsecutiveSnackbarMessages
-        getPushMessageFromChild={getPushMessageFromChild}
-      />
+      <LazyLoadAddBalanceDialog />
+      <NavBar selectedTab={selectedTab} />
       <main className={classNames(classes.main)}>
         <Routing
           isAccountActivated={isAccountActivated}
@@ -321,8 +244,6 @@ function Main(props) {
           CardChart={CardChart}
           Dropzone={Dropzone}
           DateTimePicker={DateTimePicker}
-          toggleAccountActivation={toggleAccountActivation}
-          pushMessageToSnackbar={pushMessageToSnackbar}
           transactions={transactions}
           statistics={statistics}
           posts={posts}
@@ -330,7 +251,6 @@ function Main(props) {
           selectDashboard={selectDashboard}
           selectPosts={selectPosts}
           selectSubscription={selectSubscription}
-          openAddBalanceDialog={openAddBalanceDialog}
           setTargets={setTargets}
           setPosts={setPosts}
         />

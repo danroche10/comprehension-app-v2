@@ -94,16 +94,14 @@ function SubscriptionTable(props) {
                     {transaction.description}
                   </TableCell>
                   <TableCell component='th' scope='row'>
-                    {transaction.balanceChange > 0 ? (
+                    {true ? (
                       <ColorfulChip
-                        label={`+${currencyPrettyPrint(
-                          transaction.balanceChange
-                        )}`}
+                        label={transaction.balanceChange}
                         color={theme.palette.secondary.main}
                       />
                     ) : (
                       <ColorfulChip
-                        label={currencyPrettyPrint(transaction.balanceChange)}
+                        label={transaction.balanceChange}
                         color={theme.palette.error.dark}
                       />
                     )}
