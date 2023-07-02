@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import TopicContent from "./TopicContent";
+import SubTopicContent from "./SubTopicContent";
 
 function Topics(props) {
   const { selectTopics, pushMessageToSnackbar, topics, setTopics } = props;
@@ -10,11 +11,20 @@ function Topics(props) {
   }, [selectTopics]);
 
   return (
-    <TopicContent
-      topics={topics}
-      setTopics={setTopics}
-      pushMessageToSnackbar={pushMessageToSnackbar}
-    />
+    <>
+      {" "}
+      <TopicContent
+        topics={topics}
+        setTopics={setTopics}
+        pushMessageToSnackbar={pushMessageToSnackbar}
+      />
+      <SubTopicContent
+        chosenTopic={localStorage.getItem("chosen-topic")}
+        topics={topics}
+        setTopics={setTopics}
+        pushMessageToSnackbar={pushMessageToSnackbar}
+      />
+    </>
   );
 }
 

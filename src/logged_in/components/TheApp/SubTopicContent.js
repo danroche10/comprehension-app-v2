@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import {
   Grid,
@@ -14,6 +14,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import SelfAligningImage from "../../../shared/components/SelfAligningImage";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ConfirmationDialog from "../../../shared/components/ConfirmationDialog";
+import { TopicSharp } from "@mui/icons-material";
 
 const styles = {
   dBlock: { display: "block" },
@@ -26,9 +27,8 @@ const styles = {
 const rowsPerPage = 25;
 
 function TopicContent(props) {
-  const { topics, classes } = props;
+  const { topics, classes, chosenTopic } = props;
   const [page, setPage] = useState(0);
-  const [topic, setTopic] = useState("");
   const [isSelectTopicDialogOpen, setIsSelectTopicDialogOpen] = useState(false);
   const [isSelectTopicDialogLoading, setIsSelectTopicDialogLoading] =
     useState(false);
@@ -38,16 +38,12 @@ function TopicContent(props) {
     setIsSelectTopicDialogLoading(false);
   }, [setIsSelectTopicDialogOpen, setIsSelectTopicDialogLoading]);
 
-  React.useEffect(() => {
-    localStorage.setItem("chosen-topic", JSON.stringify(topic));
-    let test = localStorage.getItem("chosen-topic", JSON.stringify(topic));
-    console.log("test:", test);
-  }, [topic]);
-
   const selectTopic = useCallback(() => {}, []);
 
-  const onPick = useCallback((topic) => {
-    setTopic(topic);
+  const onPick = useCallback(() => {}, []);
+
+  useEffect(() => {
+    console.log(chosenTopic);
   }, []);
 
   const handleChangePage = useCallback(
@@ -65,22 +61,9 @@ function TopicContent(props) {
             {topics
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((topic) => (
-                <Grid item xs={6} sm={4} md={3} key={topic.id}>
-                  <SelfAligningImage
-                    src={topic.src}
-                    title={topic.name}
-                    timeStamp={topic.timestamp}
-                    options={[
-                      {
-                        name: "Select",
-                        onClick: () => {
-                          onPick(topic);
-                        },
-                        icon: <DeleteIcon />,
-                      },
-                    ]}
-                  />
-                </Grid>
+                <ul>
+                  <li>{topic.subTopics}</li>
+                </ul>
               ))}
           </Grid>
         </Box>
@@ -98,7 +81,7 @@ function TopicContent(props) {
   return (
     <Paper>
       <Toolbar className={classes.toolbar}>
-        <Typography variant='h6'>Topics</Typography>
+        <Typography variant='h6'>SubTopics</Typography>
       </Toolbar>
       <Divider />
       {printImageGrid()}

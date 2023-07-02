@@ -2,42 +2,112 @@ const data = [
   {
     src: `${process.env.PUBLIC_URL}/images/logged_in/image1.jpg`,
     name: "Ancient Greece",
+    subTopics: [
+      "A timeline of the Ancient Greeks",
+      "Greek Mythology",
+      "The City-States",
+      "Olympic Games",
+      "Greek Philosophers and Thinkers",
+    ],
   },
   {
     src: `${process.env.PUBLIC_URL}/images/logged_in/image2.jpg`,
     name: "WW2 The Home Front and the Battle of Britain",
+    subTopics: [
+      "A timeline of the Ancient Greeks",
+      "Greek Mythology",
+      "The City-States",
+      "Olympic Games",
+      "Greek Philosophers and Thinkers",
+    ],
   },
   {
     src: `${process.env.PUBLIC_URL}/images/logged_in/image3.jpg`,
     name: "Vikings in Britain",
+    subTopics: [
+      "A timeline of the Ancient Greeks",
+      "Greek Mythology",
+      "The City-States",
+      "Olympic Games",
+      "Greek Philosophers and Thinkers",
+    ],
   },
   {
     src: `${process.env.PUBLIC_URL}/images/logged_in/image4.jpg`,
     name: "The Roman Empire and its impact on Britain",
+    subTopics: [
+      "A timeline of the Ancient Greeks",
+      "Greek Mythology",
+      "The City-States",
+      "Olympic Games",
+      "Greek Philosophers and Thinkers",
+    ],
   },
   {
     src: `${process.env.PUBLIC_URL}/images/logged_in/image5.jpg`,
     name: "The changing power of the british monarchy",
+    subTopics: [
+      "A timeline of the Ancient Greeks",
+      "Greek Mythology",
+      "The City-States",
+      "Olympic Games",
+      "Greek Philosophers and Thinkers",
+    ],
   },
   {
     src: `${process.env.PUBLIC_URL}/images/logged_in/image6.jpg`,
     name: "Stone Age to Iron Age Britain",
+    subTopics: [
+      "A timeline of the Ancient Greeks",
+      "Greek Mythology",
+      "The City-States",
+      "Olympic Games",
+      "Greek Philosophers and Thinkers",
+    ],
   },
   {
     src: `${process.env.PUBLIC_URL}/images/logged_in/image7.jpg`,
     name: "Islamic civilisation including Baghdad c.AD900",
+    subTopics: [
+      "A timeline of the Ancient Greeks",
+      "Greek Mythology",
+      "The City-States",
+      "Olympic Games",
+      "Greek Philosophers and Thinkers",
+    ],
   },
   {
     src: `${process.env.PUBLIC_URL}/images/logged_in/image8.jpg`,
     name: "Early civilisations in the Americas",
+    subTopics: [
+      "A timeline of the Ancient Greeks",
+      "Greek Mythology",
+      "The City-States",
+      "Olympic Games",
+      "Greek Philosophers and Thinkers",
+    ],
   },
   {
     src: `${process.env.PUBLIC_URL}/images/logged_in/image9.jpg`,
     name: "Anglo Saxons",
+    subTopics: [
+      "A timeline of the Ancient Greeks",
+      "Greek Mythology",
+      "The City-States",
+      "Olympic Games",
+      "Greek Philosophers and Thinkers",
+    ],
   },
   {
     src: `${process.env.PUBLIC_URL}/images/logged_in/image10.jpg`,
     name: "Achievements of earliest civilisations and a case study of Ancient Egypt",
+    subTopics: [
+      "A timeline of the Ancient Greeks",
+      "Greek Mythology",
+      "The City-States",
+      "Olympic Games",
+      "Greek Philosophers and Thinkers",
+    ],
   },
 ];
 
