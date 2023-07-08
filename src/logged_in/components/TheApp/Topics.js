@@ -102,7 +102,7 @@ function Topics(props) {
                     )[0].comprenhensionText
                 }
                 <br></br>
-                <h2>Comprehension questions</h2>{" "}
+                <h2>Comprehension questions and answers</h2>{" "}
                 <ol>
                   {topics
                     .filter((topic) => topic.name === chosenTopic)[0]
