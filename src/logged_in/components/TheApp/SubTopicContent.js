@@ -10,11 +10,8 @@ import {
   Box,
 } from "@mui/material";
 import withStyles from "@mui/styles/withStyles";
-import DeleteIcon from "@mui/icons-material/Delete";
-import SelfAligningImage from "../../../shared/components/SelfAligningImage";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ConfirmationDialog from "../../../shared/components/ConfirmationDialog";
-import { TopicSharp } from "@mui/icons-material";
 
 const styles = {
   dBlock: { display: "block" },
