@@ -8,68 +8,55 @@ const data = [
     subTopics: [
       {
         Title: "A timeline of Ancient Greece",
-        comprenhensionText: comprehensionData
-          .filter((obj) => obj.hasOwnProperty("Ancient Greece"))[0]
-          ["Ancient Greece"].filter(
-            (topic) => topic.subTopic === "A timeline of Ancient Greece"
-          )[0].comprehensionText,
-        comprehensionQuestionsAndAnswers: comprehensionData
-          .filter((obj) => obj.hasOwnProperty("Ancient Greece"))[0]
-          ["Ancient Greece"].filter(
-            (topic) => topic.subTopic === "A timeline of Ancient Greece"
-          )[0].comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData["Ancient Greece"].filter(
+          (topic) => topic.subTopic === "A timeline of Ancient Greece"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Ancient Greece"
+        ].filter(
+          (topic) => topic.subTopic === "A timeline of Ancient Greece"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Greek Mythology",
-        comprenhensionText: comprehensionData
-          .filter((obj) => obj.hasOwnProperty("Ancient Greece"))[0]
-          ["Ancient Greece"].filter(
-            (topic) => topic.subTopic === "Greek Mythology"
-          )[0].comprehensionText,
-        comprehensionQuestionsAndAnswers: comprehensionData
-          .filter((obj) => obj.hasOwnProperty("Ancient Greece"))[0]
-          ["Ancient Greece"].filter(
-            (topic) => topic.subTopic === "Greek Mythology"
-          )[0].comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData["Ancient Greece"].filter(
+          (topic) => topic.subTopic === "Greek Mythology"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Ancient Greece"
+        ].filter((topic) => topic.subTopic === "Greek Mythology")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "The City-States",
-        comprenhensionText: comprehensionData
-          .filter((obj) => obj.hasOwnProperty("Ancient Greece"))[0]
-          ["Ancient Greece"].filter(
-            (topic) => topic.subTopic === "The City-States"
-          )[0].comprehensionText,
-        comprehensionQuestionsAndAnswers: comprehensionData
-          .filter((obj) => obj.hasOwnProperty("Ancient Greece"))[0]
-          ["Ancient Greece"].filter(
-            (topic) => topic.subTopic === "The City-States"
-          )[0].comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData["Ancient Greece"].filter(
+          (topic) => topic.subTopic === "The City-States"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Ancient Greece"
+        ].filter((topic) => topic.subTopic === "The City-States")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Olympic Games",
-        comprenhensionText: comprehensionData
-          .filter((obj) => obj.hasOwnProperty("Ancient Greece"))[0]
-          ["Ancient Greece"].filter(
-            (topic) => topic.subTopic === "Olympic Games"
-          )[0].comprehensionText,
-        comprehensionQuestionsAndAnswers: comprehensionData
-          .filter((obj) => obj.hasOwnProperty("Ancient Greece"))[0]
-          ["Ancient Greece"].filter(
-            (topic) => topic.subTopic === "Olympic Games"
-          )[0].comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData["Ancient Greece"].filter(
+          (topic) => topic.subTopic === "Olympic Games"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Ancient Greece"
+        ].filter((topic) => topic.subTopic === "Olympic Games")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Greek Philosophers and Thinkers",
-        comprenhensionText: comprehensionData
-          .filter((obj) => obj.hasOwnProperty("Ancient Greece"))[0]
-          ["Ancient Greece"].filter(
-            (topic) => topic.subTopic === "Greek Philosophers and Thinkers"
-          )[0].comprehensionText,
-        comprehensionQuestionsAndAnswers: comprehensionData
-          .filter((obj) => obj.hasOwnProperty("Ancient Greece"))[0]
-          ["Ancient Greece"].filter(
-            (topic) => topic.subTopic === "Greek Philosophers and Thinkers"
-          )[0].comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData["Ancient Greece"].filter(
+          (topic) => topic.subTopic === "Greek Philosophers and Thinkers"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Ancient Greece"
+        ].filter(
+          (topic) => topic.subTopic === "Greek Philosophers and Thinkers"
+        )[0].comprehensionQuestionsAndAnswers,
       },
     ],
   },
@@ -79,33 +66,66 @@ const data = [
     subTopics: [
       {
         Title: "A timeline of WW2 The Home Front and the Battle of Britain",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "WW2 The Home Front and the Battle of Britain"
+        ].filter(
+          (topic) =>
+            topic.subTopic ===
+            "A timeline of WW2 The Home Front and the Battle of Britain"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "WW2 The Home Front and the Battle of Britain"
+        ].filter(
+          (topic) =>
+            topic.subTopic ===
+            "A timeline of WW2 The Home Front and the Battle of Britain"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Everyday Life during the War",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "WW2 The Home Front and the Battle of Britain"
+        ].filter(
+          (topic) => topic.subTopic === "Everyday Life during the War"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "WW2 The Home Front and the Battle of Britain"
+        ].filter(
+          (topic) => topic.subTopic === "Everyday Life during the War"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Evacuation of Children",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "WW2 The Home Front and the Battle of Britain"
+        ].filter((topic) => topic.subTopic === "Evacuation of Children")[0]
+          .comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "WW2 The Home Front and the Battle of Britain"
+        ].filter((topic) => topic.subTopic === "Evacuation of Children")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "The Role of Propaganda",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "WW2 The Home Front and the Battle of Britain"
+        ].filter((topic) => topic.subTopic === "The Role of Propaganda")[0]
+          .comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "WW2 The Home Front and the Battle of Britain"
+        ].filter((topic) => topic.subTopic === "The Role of Propaganda")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "The Battle of Britain",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "WW2 The Home Front and the Battle of Britain"
+        ].filter((topic) => topic.subTopic === "The Battle of Britain")[0]
+          .comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "WW2 The Home Front and the Battle of Britain"
+        ].filter((topic) => topic.subTopic === "The Battle of Britain")[0]
+          .comprehensionQuestionsAndAnswers,
       },
     ],
   },
