@@ -79,12 +79,6 @@ function Topics(props) {
 
   const printImageGrid3 = useCallback(() => {
     if (chosenTopic !== "" && chosenSubTopic !== "") {
-      const test = topics
-        .filter((topic) => topic.name === chosenTopic)[0]
-        .subTopics.filter(
-          (subTopic) => subTopic.Title === chosenSubTopic
-        )[0].comprehensionQuestionsAndAnswers;
-      console.log(test);
       return (
         <>
           <Toolbar>
