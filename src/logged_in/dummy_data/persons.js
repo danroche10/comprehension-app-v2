@@ -387,7 +387,7 @@ const data = [
     subTopics: [
       {
         Title:
-          "A timeline of Ancient Greece Achievements of earliest civilisations and a case study of Ancient Egypt",
+          "A timeline of Achievements of earliest civilisations and a case study of Ancient Egypt",
         comprenhensionText: comprehensionData.comprehensionText,
         comprehensionQuestionsAndAnswers:
           comprehensionData.comprehensionQuestionsAndAnswers,
