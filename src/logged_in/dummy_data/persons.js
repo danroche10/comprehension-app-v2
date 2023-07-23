@@ -135,33 +135,54 @@ const data = [
     subTopics: [
       {
         Title: "A timeline of Vikings in Britain",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData["Vikings in Britain"].filter(
+          (topic) => topic.subTopic === "A timeline of Vikings in Britain"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Vikings in Britain"
+        ].filter(
+          (topic) => topic.subTopic === "A timeline of Vikings in Britain"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Viking Raiders",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData["Vikings in Britain"].filter(
+          (topic) => topic.subTopic === "Viking Raiders"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Vikings in Britain"
+        ].filter((topic) => topic.subTopic === "Viking Raiders")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Viking Settlements",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData["Vikings in Britain"].filter(
+          (topic) => topic.subTopic === "Viking Settlements"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Vikings in Britain"
+        ].filter((topic) => topic.subTopic === "Viking Settlements")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Viking Culture and Beliefs",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData["Vikings in Britain"].filter(
+          (topic) => topic.subTopic === "Viking Culture and Beliefs"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Vikings in Britain"
+        ].filter((topic) => topic.subTopic === "Viking Culture and Beliefs")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Viking Legacy",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData["Vikings in Britain"].filter(
+          (topic) => topic.subTopic === "Viking Legacy"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Vikings in Britain"
+        ].filter((topic) => topic.subTopic === "Viking Legacy")[0]
+          .comprehensionQuestionsAndAnswers,
       },
     ],
   },
@@ -171,33 +192,66 @@ const data = [
     subTopics: [
       {
         Title: "A timeline of The Roman Empire and its impact on Britain",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "The Roman Empire and its impact on Britain"
+        ].filter(
+          (topic) =>
+            topic.subTopic ===
+            "A timeline of The Roman Empire and its impact on Britain"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "The Roman Empire and its impact on Britain"
+        ].filter(
+          (topic) =>
+            topic.subTopic ===
+            "A timeline of The Roman Empire and its impact on Britain"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Roman Invasion of Britain",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "The Roman Empire and its impact on Britain"
+        ].filter((topic) => topic.subTopic === "Roman Invasion of Britain")[0]
+          .comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "The Roman Empire and its impact on Britain"
+        ].filter((topic) => topic.subTopic === "Roman Invasion of Britain")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Roman Lifestyle and Technology",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "The Roman Empire and its impact on Britain"
+        ].filter(
+          (topic) => topic.subTopic === "Roman Lifestyle and Technology"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "The Roman Empire and its impact on Britain"
+        ].filter(
+          (topic) => topic.subTopic === "Roman Lifestyle and Technology"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Hadrian's Wall",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "The Roman Empire and its impact on Britain"
+        ].filter((topic) => topic.subTopic === "Hadrian's Wall")[0]
+          .comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "The Roman Empire and its impact on Britain"
+        ].filter((topic) => topic.subTopic === "Hadrian's Wall")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "End of Roman Rule",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "The Roman Empire and its impact on Britain"
+        ].filter((topic) => topic.subTopic === "End of Roman Rule")[0]
+          .comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "The Roman Empire and its impact on Britain"
+        ].filter((topic) => topic.subTopic === "End of Roman Rule")[0]
+          .comprehensionQuestionsAndAnswers,
       },
     ],
   },
@@ -207,33 +261,68 @@ const data = [
     subTopics: [
       {
         Title: "A timeline of The changing power of the british monarchy",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "The changing power of the british monarchy"
+        ].filter(
+          (topic) =>
+            topic.subTopic ===
+            "A timeline of The changing power of the british monarchy"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "The changing power of the british monarchy"
+        ].filter(
+          (topic) =>
+            topic.subTopic ===
+            "A timeline of The changing power of the british monarchy"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "The Role of Kings and Queens",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "The changing power of the british monarchy"
+        ].filter(
+          (topic) => topic.subTopic === "The Role of Kings and Queens"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "The changing power of the british monarchy"
+        ].filter(
+          (topic) => topic.subTopic === "The Role of Kings and Queens"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Evolution of Monarchical Power",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "The changing power of the british monarchy"
+        ].filter(
+          (topic) => topic.subTopic === "Evolution of Monarchical Power"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "The changing power of the british monarchy"
+        ].filter(
+          (topic) => topic.subTopic === "Evolution of Monarchical Power"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Influence of Parliament",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "The changing power of the british monarchy"
+        ].filter((topic) => topic.subTopic === "Influence of Parliament")[0]
+          .comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "The changing power of the british monarchy"
+        ].filter((topic) => topic.subTopic === "Influence of Parliament")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Modern Monarchy",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "The changing power of the british monarchy"
+        ].filter((topic) => topic.subTopic === "Modern Monarchy")[0]
+          .comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "The changing power of the british monarchy"
+        ].filter((topic) => topic.subTopic === "Modern Monarchy")[0]
+          .comprehensionQuestionsAndAnswers,
       },
     ],
   },
@@ -243,33 +332,66 @@ const data = [
     subTopics: [
       {
         Title: "A timeline of Stone Age to Iron Age Britain",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Stone Age to Iron Age Britain"
+        ].filter(
+          (topic) =>
+            topic.subTopic === "A timeline of Stone Age to Iron Age Britain"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Stone Age to Iron Age Britain"
+        ].filter(
+          (topic) =>
+            topic.subTopic === "A timeline of Stone Age to Iron Age Britain"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Hunter-Gatherers and Early Farmers",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Stone Age to Iron Age Britain"
+        ].filter(
+          (topic) => topic.subTopic === "Hunter-Gatherers and Early Farmers"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Stone Age to Iron Age Britain"
+        ].filter(
+          (topic) => topic.subTopic === "Hunter-Gatherers and Early Farmers"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Megalithic Monuments",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Stone Age to Iron Age Britain"
+        ].filter((topic) => topic.subTopic === "Megalithic Monuments")[0]
+          .comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Stone Age to Iron Age Britain"
+        ].filter((topic) => topic.subTopic === "Megalithic Monuments")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Bronze Age",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Stone Age to Iron Age Britain"
+        ].filter((topic) => topic.subTopic === "Bronze Age")[0]
+          .comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Stone Age to Iron Age Britain"
+        ].filter((topic) => topic.subTopic === "Bronze Age")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Iron Age Hillforts and Celtic Life",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Stone Age to Iron Age Britain"
+        ].filter(
+          (topic) => topic.subTopic === "Iron Age Hillforts and Celtic Life"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Stone Age to Iron Age Britain"
+        ].filter(
+          (topic) => topic.subTopic === "Iron Age Hillforts and Celtic Life"
+        )[0].comprehensionQuestionsAndAnswers,
       },
     ],
   },
@@ -279,33 +401,78 @@ const data = [
     subTopics: [
       {
         Title: "A timeline of Islamic civilisation including Baghdad c.AD900",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Islamic civilisation including Baghdad c.AD900"
+        ].filter(
+          (topic) =>
+            topic.subTopic ===
+            "A timeline of Islamic civilisation including Baghdad c.AD900"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Islamic civilisation including Baghdad c.AD900"
+        ].filter(
+          (topic) =>
+            topic.subTopic ===
+            "A timeline of Islamic civilisation including Baghdad c.AD900"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Baghdad: The Capital of Islamic Civilization",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Islamic civilisation including Baghdad c.AD900"
+        ].filter(
+          (topic) =>
+            topic.subTopic === "Baghdad: The Capital of Islamic Civilization"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Islamic civilisation including Baghdad c.AD900"
+        ].filter(
+          (topic) =>
+            topic.subTopic === "Baghdad: The Capital of Islamic Civilization"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Islamic Achievements in Science and Learning",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Islamic civilisation including Baghdad c.AD900"
+        ].filter(
+          (topic) =>
+            topic.subTopic === "Islamic Achievements in Science and Learning"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Islamic civilisation including Baghdad c.AD900"
+        ].filter(
+          (topic) =>
+            topic.subTopic === "Islamic Achievements in Science and Learning"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Cultural Diversity and Trade in Islamic Society",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Islamic civilisation including Baghdad c.AD900"
+        ].filter(
+          (topic) =>
+            topic.subTopic === "Cultural Diversity and Trade in Islamic Society"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Islamic civilisation including Baghdad c.AD900"
+        ].filter(
+          (topic) =>
+            topic.subTopic === "Cultural Diversity and Trade in Islamic Society"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Islamic Art and Architecture",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Islamic civilisation including Baghdad c.AD900"
+        ].filter(
+          (topic) => topic.subTopic === "Islamic Art and Architecture"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Islamic civilisation including Baghdad c.AD900"
+        ].filter(
+          (topic) => topic.subTopic === "Islamic Art and Architecture"
+        )[0].comprehensionQuestionsAndAnswers,
       },
     ],
   },
@@ -314,107 +481,197 @@ const data = [
     name: "Early civilisations in the Americas",
     subTopics: [
       {
-        Title: "A timeline of Early civilisations in the Americas",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        Title: "Timeline of Early civilisations in the Americas",
+        comprenhensionText: comprehensionData[
+          "Early civilisations in the Americas"
+        ].filter(
+          (topic) =>
+            topic.subTopic === "Timeline of Early civilisations in the Americas"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Early civilisations in the Americas"
+        ].filter(
+          (topic) =>
+            topic.subTopic === "Timeline of Early civilisations in the Americas"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Early Inhabitants and Migration",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Early civilisations in the Americas"
+        ].filter(
+          (topic) => topic.subTopic === "Early Inhabitants and Migration"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Early civilisations in the Americas"
+        ].filter(
+          (topic) => topic.subTopic === "Early Inhabitants and Migration"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Native American Tribes",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Early civilisations in the Americas"
+        ].filter((topic) => topic.subTopic === "Native American Tribes")[0]
+          .comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Early civilisations in the Americas"
+        ].filter((topic) => topic.subTopic === "Native American Tribes")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Advanced Civilizations",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Early civilisations in the Americas"
+        ].filter((topic) => topic.subTopic === "Advanced Civilizations")[0]
+          .comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Early civilisations in the Americas"
+        ].filter((topic) => topic.subTopic === "Advanced Civilizations")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Exploration and Colonization by Europeans",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Early civilisations in the Americas"
+        ].filter(
+          (topic) =>
+            topic.subTopic === "Exploration and Colonization by Europeans"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Early civilisations in the Americas"
+        ].filter(
+          (topic) =>
+            topic.subTopic === "Exploration and Colonization by Europeans"
+        )[0].comprehensionQuestionsAndAnswers,
       },
     ],
   },
   {
     src: `${process.env.PUBLIC_URL}/images/logged_in/image9.jpg`,
-    name: "Anglo Saxons",
-    subTopics: [
-      {
-        Title: "A timeline of Anglo Saxons",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
-      },
-      {
-        Title: "Anglo-Saxon Daily Life",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
-      },
-      {
-        Title: "Anglo-Saxon Kings and Queens",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
-      },
-      {
-        Title: "Anglo-Saxon Religion",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
-      },
-      {
-        Title: "Anglo-Saxon Warriors and Warfare",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
-      },
-    ],
-  },
-  {
-    src: `${process.env.PUBLIC_URL}/images/logged_in/image10.jpg`,
     name: "Achievements of earliest civilisations and a case study of Ancient Egypt",
     subTopics: [
       {
         Title:
           "A timeline of Achievements of earliest civilisations and a case study of Ancient Egypt",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Achievements of earliest civilisations and a case study of Ancient Egypt"
+        ].filter(
+          (topic) =>
+            topic.subTopic ===
+            "A timeline of Achievements of earliest civilisations and a case study of Ancient Egypt"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Achievements of earliest civilisations and a case study of Ancient Egypt"
+        ].filter(
+          (topic) =>
+            topic.subTopic ===
+            "A timeline of Achievements of earliest civilisations and a case study of Ancient Egypt"
+        )[0].comprehensionQuestionsAndAnswers,
+      },
+      {
+        Title: "Daily Life in Ancient Egypt",
+        comprenhensionText: comprehensionData[
+          "Achievements of earliest civilisations and a case study of Ancient Egypt"
+        ].filter((topic) => topic.subTopic === "Daily Life in Ancient Egypt")[0]
+          .comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Achievements of earliest civilisations and a case study of Ancient Egypt"
+        ].filter((topic) => topic.subTopic === "Daily Life in Ancient Egypt")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Hieroglyphics and Communication",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Achievements of earliest civilisations and a case study of Ancient Egypt"
+        ].filter(
+          (topic) => topic.subTopic === "Hieroglyphics and Communication"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Achievements of earliest civilisations and a case study of Ancient Egypt"
+        ].filter(
+          (topic) => topic.subTopic === "Hieroglyphics and Communication"
+        )[0].comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Pharaohs and Pyramids",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
-      },
-      {
-        Title: "Pharaohs and Pyramids",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Achievements of earliest civilisations and a case study of Ancient Egypt"
+        ].filter((topic) => topic.subTopic === "Pharaohs and Pyramids")[0]
+          .comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Achievements of earliest civilisations and a case study of Ancient Egypt"
+        ].filter((topic) => topic.subTopic === "Pharaohs and Pyramids")[0]
+          .comprehensionQuestionsAndAnswers,
       },
       {
         Title: "Egyptian Gods and Beliefs",
-        comprenhensionText: comprehensionData.comprehensionText,
-        comprehensionQuestionsAndAnswers:
-          comprehensionData.comprehensionQuestionsAndAnswers,
+        comprenhensionText: comprehensionData[
+          "Achievements of earliest civilisations and a case study of Ancient Egypt"
+        ].filter((topic) => topic.subTopic === "Egyptian Gods and Beliefs")[0]
+          .comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Achievements of earliest civilisations and a case study of Ancient Egypt"
+        ].filter((topic) => topic.subTopic === "Egyptian Gods and Beliefs")[0]
+          .comprehensionQuestionsAndAnswers,
+      },
+    ],
+  },
+  {
+    src: `${process.env.PUBLIC_URL}/images/logged_in/image10.jpg`,
+    name: "Anglo Saxons",
+    subTopics: [
+      {
+        Title: "A timeline of Anglo Saxons",
+        comprenhensionText: comprehensionData["Anglo Saxons"].filter(
+          (topic) => topic.subTopic === "A timeline of Anglo Saxons"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Anglo Saxons"
+        ].filter((topic) => topic.subTopic === "A timeline of Anglo Saxons")[0]
+          .comprehensionQuestionsAndAnswers,
+      },
+      {
+        Title: "Anglo-Saxon Daily Life",
+        comprenhensionText: comprehensionData["Anglo Saxons"].filter(
+          (topic) => topic.subTopic === "Anglo-Saxon Daily Life"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Anglo Saxons"
+        ].filter((topic) => topic.subTopic === "Anglo-Saxon Daily Life")[0]
+          .comprehensionQuestionsAndAnswers,
+      },
+      {
+        Title: "Anglo-Saxon Kings and Queens",
+        comprenhensionText: comprehensionData["Anglo Saxons"].filter(
+          (topic) => topic.subTopic === "Anglo-Saxon Kings and Queens"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Anglo Saxons"
+        ].filter(
+          (topic) => topic.subTopic === "Anglo-Saxon Kings and Queens"
+        )[0].comprehensionQuestionsAndAnswers,
+      },
+      {
+        Title: "Anglo-Saxon Religion",
+        comprenhensionText: comprehensionData["Anglo Saxons"].filter(
+          (topic) => topic.subTopic === "Anglo-Saxon Religion"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Anglo Saxons"
+        ].filter((topic) => topic.subTopic === "Anglo-Saxon Religion")[0]
+          .comprehensionQuestionsAndAnswers,
+      },
+      {
+        Title: "Anglo-Saxon Warriors and Warfare",
+        comprenhensionText: comprehensionData["Anglo Saxons"].filter(
+          (topic) => topic.subTopic === "Anglo-Saxon Warriors and Warfare"
+        )[0].comprehensionText,
+        comprehensionQuestionsAndAnswers: comprehensionData[
+          "Anglo Saxons"
+        ].filter(
+          (topic) => topic.subTopic === "Anglo-Saxon Warriors and Warfare"
+        )[0].comprehensionQuestionsAndAnswers,
       },
     ],
   },
