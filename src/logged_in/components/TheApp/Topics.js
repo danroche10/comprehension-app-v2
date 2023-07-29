@@ -1,20 +1,18 @@
 import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import { Grid, Divider, Toolbar, Typography, Paper, Box } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import SelfAligningImage from "../../../shared/components/SelfAligningImage";
-import ConfirmationDialog from "../../../shared/components/ConfirmationDialog";
 
 function Topics(props) {
   const { topics } = props;
 
-  const [isSelectTopicDialogOpen, setIsSelectTopicDialogOpen] = useState(false);
   const [chosenTopic, setChosenTopic] = useState("");
   const [chosenSubTopic, setChosenSubTopic] = useState("");
 
-  const closeSelectTopicDialog = useCallback(() => {
-    setIsSelectTopicDialogOpen(false);
-  }, [setIsSelectTopicDialogOpen]);
+  const onButtonClick = (topicName) => {
+    setChosenTopic(topicName);
+    setChosenSubTopic("");
+  };
 
   const printImageGrid = useCallback(() => {
     if (topics.length > 0) {
@@ -27,17 +25,10 @@ function Topics(props) {
                   src={topic.src}
                   title={topic.name}
                   timeStamp={topic.timestamp}
-                  options={[
-                    {
-                      name: "Select",
-                      onClick: () => {
-                        setChosenTopic(topic.name);
-                        setChosenSubTopic("");
-                      },
-                      icon: <DeleteIcon />,
-                    },
-                  ]}
                 />
+                <button onClick={() => onButtonClick(topic.name)}>
+                  Select Topic
+                </button>
               </Grid>
             ))}
           </Grid>
@@ -58,7 +49,7 @@ function Topics(props) {
                   <li key={subTopic.Title}>
                     {subTopic.Title}
                     <button onClick={() => setChosenSubTopic(subTopic.Title)}>
-                      Select
+                      Select Sub-topic
                     </button>
                   </li>
                 ))}
@@ -142,12 +133,6 @@ function Topics(props) {
         </Toolbar>
         <Divider />
         {printImageGrid()}
-        <ConfirmationDialog
-          open={isSelectTopicDialogOpen}
-          title='Confirmation'
-          content='change this message'
-          onClose={closeSelectTopicDialog}
-        />
       </Paper>
       <Paper>
         <Toolbar>
@@ -155,22 +140,10 @@ function Topics(props) {
         </Toolbar>
         <Divider />
         {printImageGrid2()}
-        <ConfirmationDialog
-          open={isSelectTopicDialogOpen}
-          title='Confirmation'
-          content='change this message'
-          onClose={closeSelectTopicDialog}
-        />
       </Paper>
       <Paper>
         <Divider />
         {printImageGrid3()}
-        <ConfirmationDialog
-          open={isSelectTopicDialogOpen}
-          title='Confirmation'
-          content='change this message'
-          onClose={closeSelectTopicDialog}
-        />
       </Paper>
     </>
   );
@@ -179,7 +152,6 @@ function Topics(props) {
 Topics.propTypes = {
   topics: PropTypes.arrayOf(PropTypes.object).isRequired,
   setTopics: PropTypes.func.isRequired,
-  pushMessageToSnackbar: PropTypes.func,
   selectTopics: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   set: PropTypes.func.isRequired,

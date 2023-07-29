@@ -9,8 +9,16 @@ import {
   YAxis,
 } from "recharts";
 import format from "date-fns/format";
-import { Card, CardContent, Typography, IconButton, Menu, MenuItem, Box } from "@mui/material";
-import withStyles from '@mui/styles/withStyles';
+import {
+  Card,
+  CardContent,
+  Typography,
+  IconButton,
+  Menu,
+  MenuItem,
+  Box,
+} from "@mui/material";
+import withStyles from "@mui/styles/withStyles";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const styles = (theme) => ({
@@ -109,24 +117,25 @@ function CardChart(props) {
   return (
     <Card>
       <Box pt={2} px={2} pb={4}>
-        <Box display="flex" justifyContent="space-between">
+        <Box display='flex' justifyContent='space-between'>
           <div>
-            <Typography variant="subtitle1">{title}</Typography>
-            <Typography variant="body2" color="textSecondary">
+            <Typography variant='subtitle1'>{title}</Typography>
+            <Typography variant='body2' color='textSecondary'>
               {getSubtitle()}
             </Typography>
           </div>
           <div>
             <IconButton
-              aria-label="More"
+              aria-label='More'
               aria-owns={isOpen ? "long-menu" : undefined}
-              aria-haspopup="true"
+              aria-haspopup='true'
               onClick={handleClick}
-              size="large">
+              size='large'
+            >
               <MoreVertIcon />
             </IconButton>
             <Menu
-              id="long-menu"
+              id='long-menu'
               anchorEl={anchorEl}
               open={isOpen}
               onClose={handleClose}
@@ -156,11 +165,11 @@ function CardChart(props) {
       </Box>
       <CardContent>
         <Box className={classes.cardContentInner} height={height}>
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={processData()} type="number">
+          <ResponsiveContainer width='100%' height='100%'>
+            <AreaChart data={processData()} type='number'>
               <XAxis
-                dataKey="timestamp"
-                type="number"
+                dataKey='timestamp'
+                type='number'
                 domain={["dataMin", "dataMax"]}
                 hide
               />
@@ -169,8 +178,8 @@ function CardChart(props) {
                 hide
               />
               <Area
-                type="monotone"
-                dataKey="value"
+                type='monotone'
+                dataKey='value'
                 stroke={color}
                 fill={color}
               />
