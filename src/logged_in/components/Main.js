@@ -73,7 +73,6 @@ function Main(props) {
     }
     topics.reverse();
     setTopics(topics);
-    console.log(topics);
   }, [setTopics]);
 
   const selectDashboard = useCallback(() => {

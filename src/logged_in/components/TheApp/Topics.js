@@ -79,13 +79,14 @@ function Topics(props) {
             <Grid container spacing={1}>
               <div>
                 <h2>Comprehension text</h2>
-                {
-                  topics
-                    .filter((topic) => topic.name === chosenTopic)[0]
-                    .subTopics.filter(
-                      (subTopic) => subTopic.Title === chosenSubTopic
-                    )[0].comprenhensionText
-                }
+                {topics
+                  .filter((topic) => topic.name === chosenTopic)[0]
+                  .subTopics.filter(
+                    (subTopic) => subTopic.Title === chosenSubTopic
+                  )[0]
+                  .comprenhensionText.map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
                 <br></br>
                 <h2>Comprehension questions and answers</h2>{" "}
                 <ol>
