@@ -197,7 +197,7 @@ function NavBar(props) {
                 display='inline'
                 color='primary'
               >
-                Wa
+                Comp
               </Typography>
               <Typography
                 variant='h4'
@@ -205,7 +205,7 @@ function NavBar(props) {
                 display='inline'
                 color='secondary'
               >
-                Ver
+                Va
               </Typography>
             </Hidden>
           </Box>
