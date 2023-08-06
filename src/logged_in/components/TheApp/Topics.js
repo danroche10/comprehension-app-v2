@@ -26,9 +26,11 @@ function Topics(props) {
                   title={topic.name}
                   timeStamp={topic.timestamp}
                 />
-                <button onClick={() => onButtonClick(topic.name)}>
-                  Select Topic
-                </button>
+                <Box display='flex' justifyContent='center'>
+                  <button onClick={() => onButtonClick(topic.name)}>
+                    Select Topic
+                  </button>
+                </Box>
               </Grid>
             ))}
           </Grid>
