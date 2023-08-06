@@ -1,6 +1,5 @@
 import React, { useState, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
-import { ImageListItemBar } from "@mui/material";
 import withStyles from "@mui/styles/withStyles";
 
 const styles = {
@@ -9,6 +8,7 @@ const styles = {
     paddingTop: "100%",
     overflow: "hidden",
     position: "relative",
+    height: "275px",
   },
   image: {
     position: "absolute",
@@ -36,10 +36,10 @@ function SelfAligningImage(props) {
   }, [img, setHasLoaded, setHasMoreWidthThanHeight]);
 
   return (
-    <div className={classes.imageContainer}>
+    <div className={classes.imageContainer} style={{ position: "relative" }}>
       <img
         style={{
-          height: hasMoreWidthThanHeight ? "100%" : "auto",
+          height: "100%",
           width: hasMoreWidthThanHeight ? "auto" : "100%",
           display: hasLoaded ? "block" : "none",
           borderRadius: roundedBorder ? theme.shape.borderRadius : 0,
@@ -50,7 +50,27 @@ function SelfAligningImage(props) {
         src={src}
         alt=''
       />
-      {title && <ImageListItemBar title={title} />}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center", // Vertical alignment
+          justifyContent: "center", // Horizontal alignment
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          height: "30%",
+          backgroundColor: "rgba(0, 0, 0, 0.5)", // Translucent black background
+          color: "white", // Text color
+          padding: "5px",
+          textAlign: "center",
+          borderRadius: roundedBorder
+            ? `0 0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px`
+            : 0, // If you want the rounded bottom borders
+        }}
+      >
+        {title}
+      </div>
     </div>
   );
 }
