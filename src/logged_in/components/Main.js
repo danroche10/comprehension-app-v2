@@ -100,7 +100,7 @@ function Main(props) {
 
   return (
     <Fragment>
-      <NavBar selectedTab={selectedTab} />
+      <NavBar style={{ width: "300px" }} selectedTab={selectedTab} />
       <main className={classNames(classes.main)}>
         <Routing
           CardChart={CardChart}

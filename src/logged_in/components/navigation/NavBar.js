@@ -15,13 +15,10 @@ import {
   ListItemText,
   Hidden,
   Tooltip,
+  Divider,
   Box,
 } from "@mui/material";
 import withStyles from "@mui/styles/withStyles";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import ImageIcon from "@mui/icons-material/Image";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import MenuIcon from "@mui/icons-material/Menu";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import SideDrawer from "./SideDrawer";
@@ -29,6 +26,12 @@ import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const styles = (theme) => ({
+  sideBarMenuItems: {
+    color: "white;",
+  },
+  Drawer: {
+    width: "100px",
+  },
   appBar: {
     boxShadow: theme.shadows[6],
     backgroundColor: theme.palette.common.white,
@@ -71,15 +74,8 @@ const styles = (theme) => ({
     },
   },
   drawerPaper: {
-    height: "100%vh",
-    whiteSpace: "nowrap",
-    border: 0,
-    width: theme.spacing(7),
-    overflowX: "hidden",
+    width: "250px",
     marginTop: theme.spacing(8),
-    [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9),
-    },
     backgroundColor: theme.palette.common.black,
   },
   smBordered: {
@@ -152,63 +148,31 @@ function NavBar(props) {
       link: "/c/dashboard",
       name: "Dashboard",
       onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <DashboardIcon
-            className={
-              selectedTab === "Dashboard" ? classes.textPrimary : "text-white"
-            }
-            fontSize='small'
-          />
-        ),
-        mobile: <DashboardIcon className='text-white' />,
-      },
-    },
-    {
-      link: "/c/app",
-      name: "Posts",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <ImageIcon
-            className={
-              selectedTab === "Posts" ? classes.textPrimary : "text-white"
-            }
-            fontSize='small'
-          />
-        ),
-        mobile: <ImageIcon className='text-white' />,
-      },
+      desktop: <div className={classes.sideBarMenuItems}>Dashboard</div>,
     },
     {
       link: "/c/subscription",
       name: "Subscription",
       onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <AccountBalanceIcon
-            className={
-              selectedTab === "Subscription"
-                ? classes.textPrimary
-                : "text-white"
-            }
-            fontSize='small'
-          />
-        ),
-        mobile: <AccountBalanceIcon className='text-white' />,
-      },
+
+      desktop: <div className={classes.sideBarMenuItems}>Subscription</div>,
     },
     {
       link: "/",
       name: "Logout",
-      icon: {
-        desktop: (
-          <PowerSettingsNewIcon className='text-white' fontSize='small' />
-        ),
-        mobile: <PowerSettingsNewIcon className='text-white' />,
-      },
+      desktop: <div className={classes.sideBarMenuItems}>Log out</div>,
     },
   ];
+
+  const resourceMenuItems = [
+    {
+      link: "/c/app",
+      name: "Resources",
+      onClick: closeMobileDrawer,
+      desktop: <div className={classes.sideBarMenuItems}>Resources</div>,
+    },
+  ];
+
   return (
     <Fragment>
       <AppBar position='sticky' className={classes.appBar}>
@@ -320,7 +284,41 @@ function NavBar(props) {
                     }
                   >
                     <ListItemIcon className={classes.justifyCenter}>
-                      {element.icon.desktop}
+                      {element.desktop}
+                    </ListItemIcon>
+                  </ListItem>
+                </Tooltip>
+              </Link>
+            ))}
+          </List>
+          <Divider style={{ backgroundColor: "white" }} />
+          <List>
+            {resourceMenuItems.map((element, index) => (
+              <Link
+                to={element.link}
+                className={classes.menuLink}
+                onClick={element.onClick}
+                key={index}
+                ref={(node) => {
+                  links.current[index] = node;
+                }}
+              >
+                <Tooltip
+                  title={element.name}
+                  placement='right'
+                  key={element.name}
+                >
+                  <ListItem
+                    selected={selectedTab === element.name}
+                    button
+                    divider={index !== menuItems.length - 1}
+                    className={classes.permanentDrawerListItem}
+                    onClick={() => {
+                      links.current[index].click();
+                    }}
+                  >
+                    <ListItemIcon className={classes.justifyCenter}>
+                      {element.desktop}
                     </ListItemIcon>
                   </ListItem>
                 </Tooltip>
@@ -333,7 +331,6 @@ function NavBar(props) {
         menuItems={menuItems.map((element) => ({
           link: element.link,
           name: element.name,
-          icon: element.icon.mobile,
           onClick: element.onClick,
         }))}
         anchor='left'
