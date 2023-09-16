@@ -6,13 +6,49 @@ import SelfAligningImage from "../../../shared/components/SelfAligningImage";
 function Topics(props) {
   const { topics } = props;
 
+  const [chosenYearGroup, setChosenYearGroup] = useState("");
   const [chosenTopic, setChosenTopic] = useState("");
   const [chosenSubTopic, setChosenSubTopic] = useState("");
 
-  const onButtonClick = (topicName) => {
+  const onSelectTopicButtonClick = (topicName) => {
     setChosenTopic(topicName);
     setChosenSubTopic("");
   };
+
+  const onYearGroupButtonClick = (yearGroup) => {
+    setChosenTopic("");
+    setChosenSubTopic("");
+    setChosenYearGroup(yearGroup);
+  };
+
+  const printYearGroupGrid = useCallback(() => {
+    return (
+      <Box p={1}>
+        <Grid container spacing={1}>
+          {Array.from({ length: 6 }, (_, i) => i + 1).map((year) => (
+            <Grid item xs={6} sm={4} md={2} key={year}>
+              <Box
+                width={100}
+                height={100}
+                display='flex'
+                alignItems='center'
+                justifyContent='center'
+                bgcolor='white'
+                color='black'
+              >
+                {year}
+              </Box>
+              <Box display='flex' justifyContent='center' marginTop={1}>
+                <button onClick={() => onYearGroupButtonClick(year)}>
+                  Select Year {year}
+                </button>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    );
+  }, [topics, chosenTopic, chosenSubTopic]);
 
   const printImageGrid = useCallback(() => {
     if (topics.length > 0) {
@@ -27,7 +63,7 @@ function Topics(props) {
                   timeStamp={topic.timestamp}
                 />
                 <Box display='flex' justifyContent='center'>
-                  <button onClick={() => onButtonClick(topic.name)}>
+                  <button onClick={() => onSelectTopicButtonClick(topic.name)}>
                     Select Topic
                   </button>
                 </Box>
@@ -68,7 +104,7 @@ function Topics(props) {
         </Box>
       );
     }
-  }, [topics, chosenTopic]);
+  }, [chosenYearGroup, topics, chosenTopic]);
 
   const printImageGrid3 = useCallback(() => {
     if (chosenTopic !== "" && chosenSubTopic !== "") {
@@ -125,11 +161,18 @@ function Topics(props) {
         </Box>
       );
     }
-  }, [topics, chosenTopic, chosenSubTopic]);
+  }, [chosenYearGroup, topics, chosenTopic, chosenSubTopic]);
 
   return (
     <>
       {" "}
+      <Paper>
+        <Toolbar>
+          <Typography variant='h6'>Year Group</Typography>
+        </Toolbar>
+        <Divider />
+        {printYearGroupGrid()}
+      </Paper>
       <Paper>
         <Toolbar>
           <Typography variant='h6'>Topics</Typography>

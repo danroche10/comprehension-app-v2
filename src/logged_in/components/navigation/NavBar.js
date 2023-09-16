@@ -167,9 +167,23 @@ function NavBar(props) {
   const resourceMenuItems = [
     {
       link: "/c/app",
-      name: "Resources",
+      name: "History",
       onClick: closeMobileDrawer,
-      desktop: <div className={classes.sideBarMenuItems}>Resources</div>,
+      desktop: <div className={classes.sideBarMenuItems}>History</div>,
+    },
+    {
+      link: "/c/app",
+      name: "Geography",
+      onClick: closeMobileDrawer,
+      desktop: <div className={classes.sideBarMenuItems}>Geography</div>,
+    },
+    {
+      link: "/c/app",
+      name: "Religious Education",
+      onClick: closeMobileDrawer,
+      desktop: (
+        <div className={classes.sideBarMenuItems}>Religious Education</div>
+      ),
     },
   ];
 
@@ -293,6 +307,15 @@ function NavBar(props) {
           </List>
           <Divider style={{ backgroundColor: "white" }} />
           <List>
+            <div
+              style={{
+                textAlign: "center",
+                color: "green",
+                fontWeight: "bold",
+              }}
+            >
+              Resources
+            </div>
             {resourceMenuItems.map((element, index) => (
               <Link
                 to={element.link}
@@ -325,6 +348,7 @@ function NavBar(props) {
               </Link>
             ))}
           </List>
+          <Divider style={{ backgroundColor: "white" }} />
         </Drawer>
       </Hidden>
       <NavigationDrawer

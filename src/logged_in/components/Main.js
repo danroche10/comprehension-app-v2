@@ -5,7 +5,7 @@ import withStyles from "@mui/styles/withStyles";
 import Routing from "./Routing";
 import NavBar from "./navigation/NavBar";
 import smoothScrollTop from "../../shared/functions/smoothScrollTop";
-import persons from "../dummy_data/persons";
+import comprehensionData from "../dummy_data/persons";
 
 const styles = (theme) => ({
   main: {
@@ -36,7 +36,7 @@ function Main(props) {
       new Date().getTime() / 1000 - iterations * oneMonthSeconds
     );
     for (let i = 0; i < iterations; i += 1) {
-      const randomResourceTemplate = persons[i];
+      const randomResourceTemplate = comprehensionData["Year 4"][i];
       const resource = {
         id: i,
         description: randomResourceTemplate.name,
@@ -54,26 +54,27 @@ function Main(props) {
 
   const fetchTopics = useCallback(() => {
     const topics = [];
-    const iterations = persons.length;
+    const yearGroups = Object.keys(comprehensionData).length;
+
     const oneDaySeconds = 60 * 60 * 24;
     let curUnix = Math.round(
-      new Date().getTime() / 1000 - iterations * oneDaySeconds
+      new Date().getTime() / 1000 - yearGroups * oneDaySeconds
     );
-    for (let i = 0; i < iterations; i += 1) {
-      const person = persons[i];
-      const topic = {
+    for (let i = 0; i < yearGroups; i += 1) {
+      const keys = Object.keys(comprehensionData);
+      const yearGroupName = comprehensionData[keys[i]];
+      const yearGroupData = {
         id: i,
-        src: person.src,
+        //src: yearGroup.src,
         timestamp: curUnix,
-        name: person.name,
-        subTopics: person.subTopics,
+        yearGroupName: yearGroupName,
       };
       curUnix += oneDaySeconds;
-      topics.push(topic);
+      topics.push(yearGroupData);
     }
     topics.reverse();
     setTopics(topics);
-  }, [setTopics]);
+  }, []);
 
   const selectDashboard = useCallback(() => {
     smoothScrollTop();
