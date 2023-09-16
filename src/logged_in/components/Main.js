@@ -62,19 +62,32 @@ function Main(props) {
     );
     for (let i = 0; i < yearGroups; i += 1) {
       const keys = Object.keys(comprehensionData);
-      const yearGroupName = comprehensionData[keys[i]];
+      const yearGroupName = keys[i];
       const yearGroupData = {
         id: i,
-        //src: yearGroup.src,
         timestamp: curUnix,
+        topics: [],
         yearGroupName: yearGroupName,
       };
+      let yearGroupTopics = [];
+      for (let j = 0; j < comprehensionData[keys[i]].length; j += 1) {
+        let yearGroupTopic = {
+          id: j,
+          src: comprehensionData[keys[i]][j].src,
+          timestamp: curUnix,
+          name: comprehensionData[keys[i]][j].name,
+          subTopics: comprehensionData[keys[i]][j].subTopics,
+        };
+        yearGroupTopics.push(yearGroupTopic);
+      }
+      yearGroupData.topics = yearGroupTopics;
+
       curUnix += oneDaySeconds;
       topics.push(yearGroupData);
     }
     topics.reverse();
     setTopics(topics);
-  }, []);
+  }, [setTopics]);
 
   const selectDashboard = useCallback(() => {
     smoothScrollTop();

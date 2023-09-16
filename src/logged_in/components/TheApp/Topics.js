@@ -18,8 +18,15 @@ function Topics(props) {
   const onYearGroupButtonClick = (yearGroup) => {
     setChosenTopic("");
     setChosenSubTopic("");
-    setChosenYearGroup(yearGroup);
+    let chosenYearGroupString = "Year " + yearGroup;
+    setChosenYearGroup(chosenYearGroupString);
   };
+
+  const filteredArray = topics.filter(
+    (topic) => topic.yearGroupName === chosenYearGroup
+  );
+  const filteredTopics =
+    filteredArray.length > 0 ? filteredArray[0].topics : [];
 
   const printYearGroupGrid = useCallback(() => {
     return (
@@ -55,7 +62,7 @@ function Topics(props) {
       return (
         <Box p={1}>
           <Grid container spacing={1}>
-            {topics.map((topic) => (
+            {filteredTopics.map((topic) => (
               <Grid item xs={6} sm={4} md={3} key={topic.id}>
                 <SelfAligningImage
                   src={topic.src}
@@ -73,7 +80,7 @@ function Topics(props) {
         </Box>
       );
     }
-  }, [topics, chosenTopic]);
+  }, [chosenYearGroup, topics, chosenTopic]);
 
   const printImageGrid2 = useCallback(() => {
     if (chosenTopic !== "") {
@@ -81,7 +88,7 @@ function Topics(props) {
         <Box p={1}>
           <Grid container spacing={1}>
             <ul>
-              {topics
+              {filteredTopics
                 .filter((topic) => topic.name === chosenTopic)[0]
                 .subTopics.map((subTopic) => (
                   <li key={subTopic.Title}>
@@ -117,7 +124,7 @@ function Topics(props) {
             <Grid container spacing={1}>
               <div>
                 <h2>Comprehension text</h2>
-                {topics
+                {filteredTopics
                   .filter((topic) => topic.name === chosenTopic)[0]
                   .subTopics.filter(
                     (subTopic) => subTopic.Title === chosenSubTopic
@@ -128,7 +135,7 @@ function Topics(props) {
                 <br></br>
                 <h2>Comprehension questions and answers</h2>{" "}
                 <ol>
-                  {topics
+                  {filteredTopics
                     .filter((topic) => topic.name === chosenTopic)[0]
                     .subTopics.filter(
                       (subTopic) => subTopic.Title === chosenSubTopic
