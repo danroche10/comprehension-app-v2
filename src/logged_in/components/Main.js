@@ -77,7 +77,7 @@ function Main(props) {
         const topicsForCurrentSubjectAndYearGroup =
           comprehensionData[subjectKeys[i]][yearGroupKeys[j]];
 
-        const yearGroupData = {
+        const dataForCurrentSubjectAndYearGroup = {
           id: i,
           timestamp: curUnix,
           topics: topicsForCurrentSubjectAndYearGroup,
@@ -85,13 +85,12 @@ function Main(props) {
           subjectName: currentSubject,
         };
         curUnix += oneDaySeconds;
-        topics.push(yearGroupData);
+        topics.push(dataForCurrentSubjectAndYearGroup);
       }
     }
 
     topics.reverse();
     setTopics(topics);
-    console.log(topics);
   }, [setTopics]);
 
   const selectDashboard = useCallback(() => {
