@@ -1,14 +1,25 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Grid, Divider, Toolbar, Typography, Paper, Box } from "@mui/material";
 import SelfAligningImage from "../../../shared/components/SelfAligningImage";
 
 function Topics(props) {
   const { topics } = props;
-
+  const { subject } = useParams();
   const [chosenYearGroup, setChosenYearGroup] = useState("");
   const [chosenTopic, setChosenTopic] = useState("");
   const [chosenSubTopic, setChosenSubTopic] = useState("");
+  const [chosenSubject, setChosenSubject] = useState(subject || "");
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  useEffect(() => {
+    const pascalCaseSubject = capitalizeFirstLetter(subject);
+    setChosenSubject(pascalCaseSubject);
+  }, [subject]);
 
   const onSelectTopicButtonClick = (topicName) => {
     setChosenTopic(topicName);
@@ -22,9 +33,9 @@ function Topics(props) {
     setChosenYearGroup(chosenYearGroupString);
   };
 
-  const filteredArray = topics.filter(
-    (topic) => topic.yearGroupName === chosenYearGroup
-  );
+  const filteredArray = topics
+    .filter((topic) => topic.subjectName === chosenSubject)
+    .filter((topic) => topic.yearGroupName === chosenYearGroup);
   const filteredTopics =
     filteredArray.length > 0 ? filteredArray[0].topics : [];
 

@@ -70,7 +70,7 @@ function Routing(props) {
     <div className={classes.wrapper}>
       <Switch>
         <PropsRoute
-          path='/c/app'
+          path='/c/app/:subject'
           component={Topics}
           EmojiTextArea={EmojiTextArea}
           ImageCropper={ImageCropper}

@@ -36,7 +36,7 @@ function Main(props) {
       new Date().getTime() / 1000 - iterations * oneMonthSeconds
     );
     for (let i = 0; i < iterations; i += 1) {
-      const randomResourceTemplate = comprehensionData["Year 4"][i];
+      const randomResourceTemplate = comprehensionData["History"]["Year 4"][i];
       const resource = {
         id: i,
         description: randomResourceTemplate.name,
@@ -54,39 +54,44 @@ function Main(props) {
 
   const fetchTopics = useCallback(() => {
     const topics = [];
-    const yearGroups = Object.keys(comprehensionData).length;
+    const numberOfSubjects = Object.keys(comprehensionData).length;
 
     const oneDaySeconds = 60 * 60 * 24;
     let curUnix = Math.round(
-      new Date().getTime() / 1000 - yearGroups * oneDaySeconds
+      new Date().getTime() / 1000 - numberOfSubjects * oneDaySeconds
     );
-    for (let i = 0; i < yearGroups; i += 1) {
-      const keys = Object.keys(comprehensionData);
-      const yearGroupName = keys[i];
-      const yearGroupData = {
-        id: i,
-        timestamp: curUnix,
-        topics: [],
-        yearGroupName: yearGroupName,
-      };
-      let yearGroupTopics = [];
-      for (let j = 0; j < comprehensionData[keys[i]].length; j += 1) {
-        let yearGroupTopic = {
-          id: j,
-          src: comprehensionData[keys[i]][j].src,
-          timestamp: curUnix,
-          name: comprehensionData[keys[i]][j].name,
-          subTopics: comprehensionData[keys[i]][j].subTopics,
-        };
-        yearGroupTopics.push(yearGroupTopic);
-      }
-      yearGroupData.topics = yearGroupTopics;
 
-      curUnix += oneDaySeconds;
-      topics.push(yearGroupData);
+    let currentSubject = "";
+    let currentYearGroup = "";
+
+    for (let i = 0; i < numberOfSubjects; i += 1) {
+      const subjectKeys = Object.keys(comprehensionData);
+      const numberOfYearGroups = Object.keys(
+        comprehensionData[subjectKeys[i]]
+      ).length;
+      currentSubject = subjectKeys[i];
+
+      for (let j = 0; j < numberOfYearGroups; j += 1) {
+        const yearGroupKeys = Object.keys(comprehensionData[subjectKeys[j]]);
+        currentYearGroup = yearGroupKeys[j];
+        const topicsForCurrentSubjectAndYearGroup =
+          comprehensionData[subjectKeys[i]][yearGroupKeys[j]];
+
+        const yearGroupData = {
+          id: i,
+          timestamp: curUnix,
+          topics: topicsForCurrentSubjectAndYearGroup,
+          yearGroupName: currentYearGroup,
+          subjectName: currentSubject,
+        };
+        curUnix += oneDaySeconds;
+        topics.push(yearGroupData);
+      }
     }
+
     topics.reverse();
     setTopics(topics);
+    console.log(topics);
   }, [setTopics]);
 
   const selectDashboard = useCallback(() => {

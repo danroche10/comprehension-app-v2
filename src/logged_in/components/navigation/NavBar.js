@@ -166,19 +166,19 @@ function NavBar(props) {
 
   const resourceMenuItems = [
     {
-      link: "/c/app",
+      link: "/c/app/History",
       name: "History",
       onClick: closeMobileDrawer,
       desktop: <div className={classes.sideBarMenuItems}>History</div>,
     },
     {
-      link: "/c/app",
+      link: "/c/app/Geography",
       name: "Geography",
       onClick: closeMobileDrawer,
       desktop: <div className={classes.sideBarMenuItems}>Geography</div>,
     },
     {
-      link: "/c/app",
+      link: "/c/app/ReligiousEducation",
       name: "Religious Education",
       onClick: closeMobileDrawer,
       desktop: (
