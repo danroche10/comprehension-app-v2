@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Grid, Divider, Toolbar, Typography, Paper, Box } from "@mui/material";
 import SelfAligningImage from "../../../shared/components/SelfAligningImage";
+import "react-quill/dist/quill.snow.css";
+import { jsPDF } from "jspdf";
 
 function Topics(props) {
   const { topics } = props;
@@ -12,9 +14,82 @@ function Topics(props) {
   const [chosenSubTopic, setChosenSubTopic] = useState("");
   const [chosenSubject, setChosenSubject] = useState(subject || "");
 
+  const downloadAsPDF = () => {
+    const contentString = getContentAsString();
+
+    // Create a new jsPDF instance
+    const pdf = new jsPDF();
+
+    // Define the page width, line height, and starting y-position
+    const pageWidth = pdf.internal.pageSize.getWidth() - 20; // minus margins
+    const lineHeight = 6.5; // height for each line
+    let yPos = 10; // starting y-position
+
+    // Extract and separate out the comprehension text and questions and answers
+    const headerRegex =
+      /Comprehension text|Comprehension questions and answers/g;
+    const sections = contentString
+      .split(headerRegex)
+      .filter((section) => section.trim() !== "");
+
+    // Format the text for headers and content
+    ["Comprehension text", ...sections].forEach((section, index) => {
+      if (headerRegex.test(section)) {
+        pdf.setFontSize(14);
+        pdf.setFont("bold");
+        yPos += 10; // extra space before headers
+      } else {
+        pdf.setFontSize(10);
+        pdf.setFont("normal");
+        yPos += 5; // space between header and content
+      }
+
+      // Split the text into lines
+      const lines = pdf.splitTextToSize(section, pageWidth);
+
+      // Loop through each line and add it to the PDF, considering pagination
+      for (let i = 0; i < lines.length; i++) {
+        if (yPos > pdf.internal.pageSize.getHeight() - 10) {
+          pdf.addPage();
+          yPos = 10;
+        }
+        pdf.text(lines[i], 10, yPos);
+        yPos += lineHeight;
+      }
+
+      yPos += 5; // extra space after each section
+    });
+
+    // Save the PDF
+    pdf.save("download.pdf");
+  };
+
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+  const getContentAsString = () => {
+    // Extract the relevant topic and subTopic based on the chosen ones
+    const topic = filteredTopics.filter(
+      (topic) => topic.name === chosenTopic
+    )[0];
+    const subTopic = topic.subTopics.filter(
+      (subTopic) => subTopic.Title === chosenSubTopic
+    )[0];
+
+    // Extract the comprehension text
+    const comprehensionText = subTopic.comprenhensionText.join(" ");
+
+    // Extract questions and answers
+    const questionsAndAnswers = subTopic.comprehensionQuestionsAndAnswers
+      .map((qaPair) => `Question: ${qaPair.question} Answer: ${qaPair.answer}`)
+      .join(" ");
+
+    // Combine all the extracted content
+    const finalContent = `Comprehension text ${comprehensionText} Comprehension questions and answers ${questionsAndAnswers}`;
+
+    return finalContent;
+  };
 
   useEffect(() => {
     const pascalCaseSubject = capitalizeFirstLetter(subject);
@@ -207,6 +282,9 @@ function Topics(props) {
       </Paper>
       <Paper>
         <Divider />
+        <div className='App'>
+          <button onClick={downloadAsPDF}>Download as PDF</button>
+        </div>
         {printImageGrid3()}
       </Paper>
     </>
