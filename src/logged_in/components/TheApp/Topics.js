@@ -15,7 +15,7 @@ function Topics(props) {
   const [chosenSubject, setChosenSubject] = useState(subject || "");
 
   const downloadAsPDF = () => {
-    const contentArray = getContentAsArray();
+    const contentArray = getTextAndQuestionsAsArray();
     const pdf = new jsPDF();
 
     // Define constants
@@ -84,14 +84,82 @@ function Topics(props) {
     });
 
     // Save the PDF
-    pdf.save(`${chosenSubTopic}.pdf`);
+    pdf.save(`${chosenSubTopic}-text-and-questions.pdf`);
+  };
+
+  const downloadQAAsPDF = () => {
+    const answersArray = getAnswersAsArray();
+    const questionsArray = getTextAndQuestionsAsArray();
+    const pdf = new jsPDF();
+
+    // Margins
+    const leftMargin = 10;
+    const rightMargin = 10;
+    const topMargin = 10;
+    const bottomMargin = 15;
+
+    let yPos = topMargin;
+    const lineHeight = 7; // Adjust as needed
+
+    // Header
+    pdf.setFontSize(20);
+    pdf.setFont("helvetica", "bold");
+    pdf.text(chosenSubTopic, leftMargin, yPos);
+    yPos += 15;
+
+    // Title for the Q&A section
+    pdf.setFontSize(16);
+    pdf.setFont("normal");
+    pdf.text("Comprehension questions and answers", leftMargin, yPos);
+    yPos += 10;
+
+    // Questions and Answers Text Size
+    pdf.setFontSize(12);
+
+    const maxWidth =
+      pdf.internal.pageSize.getWidth() - leftMargin - rightMargin;
+
+    // Loop through questions and answers and add them to the PDF
+    // Loop through questions and answers and add them to the PDF
+    questionsArray.slice(1).forEach((questionObj, index) => {
+      const questionText = questionObj[`Question ${index + 1}`];
+      const answerObj = answersArray[index];
+      const answerText = answerObj[`Answer ${index + 1}`];
+
+      // Question
+      pdf.setFont("helvetica", "bold");
+      pdf.text(`Question ${index + 1}:`, leftMargin, yPos);
+      yPos += lineHeight; // Move down for question text
+      pdf.setFont("helvetica", "normal");
+      const wrappedQuestion = pdf.splitTextToSize(questionText, maxWidth);
+      pdf.text(wrappedQuestion, leftMargin, yPos);
+      yPos += wrappedQuestion.length * lineHeight;
+
+      // Answer
+      pdf.setFont("helvetica", "bold");
+      pdf.text(`Answer ${index + 1}:`, leftMargin, yPos);
+      yPos += lineHeight; // Move down for answer text
+      pdf.setFont("helvetica", "normal");
+      const wrappedAnswer = pdf.splitTextToSize(answerText, maxWidth);
+      pdf.text(wrappedAnswer, leftMargin, yPos);
+      yPos += wrappedAnswer.length * lineHeight + 5; // Extra space after each answer
+
+      // Check if a new page is needed
+      if (yPos >= pdf.internal.pageSize.getHeight() - bottomMargin) {
+        pdf.addPage();
+        yPos = topMargin;
+      }
+    });
+
+    // Save the PDF
+    pdf.save(`${chosenSubTopic}_Q&A.pdf`);
   };
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  const getContentAsArray = () => {
+  const getTextAndQuestionsAsArray = () => {
     // Extract the relevant topic and subTopic based on the chosen ones
     const topic = filteredTopics.filter(
       (topic) => topic.name === chosenTopic
@@ -122,6 +190,24 @@ function Topics(props) {
     // Combine all the extracted content
 
     return textAndQuestionsArray;
+  };
+
+  const getAnswersAsArray = () => {
+    // Extract the relevant topic and subTopic based on the chosen ones
+    const topic = filteredTopics.filter(
+      (topic) => topic.name === chosenTopic
+    )[0];
+    const subTopic = topic.subTopics.filter(
+      (subTopic) => subTopic.Title === chosenSubTopic
+    )[0];
+
+    const answersArray = subTopic.comprehensionQuestionsAndAnswers.map(
+      (qaPair, index) => ({
+        [`Answer ${index + 1}`]: qaPair.answer,
+      })
+    );
+
+    return answersArray;
   };
 
   useEffect(() => {
@@ -240,6 +326,15 @@ function Topics(props) {
             <Typography variant='h6'>Comprehension Resources</Typography>
           </Toolbar>
           <Box p={1}>
+            <div className='App'>
+              <button onClick={downloadAsPDF}>
+                Download text and questions PDF
+              </button>
+              <br></br>
+              <button onClick={downloadQAAsPDF}>
+                Download questions and answers PDF
+              </button>
+            </div>
             <Grid container spacing={1}>
               <div>
                 <h2>Comprehension text</h2>
@@ -315,9 +410,6 @@ function Topics(props) {
       </Paper>
       <Paper>
         <Divider />
-        <div className='App'>
-          <button onClick={downloadAsPDF}>Download as PDF</button>
-        </div>
         {printImageGrid3()}
       </Paper>
     </>
