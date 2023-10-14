@@ -15,60 +15,83 @@ function Topics(props) {
   const [chosenSubject, setChosenSubject] = useState(subject || "");
 
   const downloadAsPDF = () => {
-    const contentString = getContentAsString();
-
-    // Create a new jsPDF instance
+    const contentArray = getContentAsArray();
     const pdf = new jsPDF();
 
-    // Define the page width, line height, and starting y-position
-    const pageWidth = pdf.internal.pageSize.getWidth() - 20; // minus margins
-    const lineHeight = 6.5; // height for each line
-    let yPos = 10; // starting y-position
+    // Define constants
+    const pageWidth = pdf.internal.pageSize.getWidth() - 20;
+    const lineHeight = 6.5;
+    let yPos = 10;
 
-    // Extract and separate out the comprehension text and questions and answers
-    const headerRegex =
-      /Comprehension text|Comprehension questions and answers/g;
-    const sections = contentString
-      .split(headerRegex)
-      .filter((section) => section.trim() !== "");
+    // Title
+    pdf.setFontSize(20);
+    pdf.setFont("bold");
+    pdf.text(chosenSubTopic, 10, yPos);
+    yPos += lineHeight + 10; // Additional space after the title
 
-    // Format the text for headers and content
-    ["Comprehension text", ...sections].forEach((section, index) => {
-      if (headerRegex.test(section)) {
-        pdf.setFontSize(14);
-        pdf.setFont("bold");
-        yPos += 10; // extra space before headers
-      } else {
-        pdf.setFontSize(10);
-        pdf.setFont("normal");
-        yPos += 5; // space between header and content
+    // Comprehension Text
+    pdf.setFontSize(12);
+    pdf.setFont("normal");
+    const comprehensionText = contentArray[0][chosenSubTopic]; // Assumes first item is the text
+    const comprehensionLines = pdf.splitTextToSize(
+      comprehensionText,
+      pageWidth
+    );
+
+    comprehensionLines.forEach((line) => {
+      pdf.text(line, 10, yPos);
+      yPos += lineHeight;
+    });
+
+    yPos += 10; // Additional space before questions
+
+    // Questions
+    pdf.setFontSize(20);
+    pdf.setFont("bold");
+    pdf.text("Questions", 10, yPos);
+    yPos += lineHeight + 5; // Additional space after "Questions"
+
+    // Loop through questions (skipping first item as it's the text)
+    pdf.setFontSize(12);
+
+    contentArray.slice(1).forEach((questionObj) => {
+      const questionLabel = Object.keys(questionObj)[0];
+      const questionText = questionObj[questionLabel];
+      const questionLines = pdf.splitTextToSize(questionText, pageWidth);
+
+      // Check if a new page is needed before adding the question label
+      if (yPos > pdf.internal.pageSize.getHeight() - 10) {
+        pdf.addPage();
+        yPos = 10;
       }
 
-      // Split the text into lines
-      const lines = pdf.splitTextToSize(section, pageWidth);
+      pdf.text(`${questionLabel}`, 10, yPos);
+      yPos += lineHeight;
 
-      // Loop through each line and add it to the PDF, considering pagination
-      for (let i = 0; i < lines.length; i++) {
+      questionLines.forEach((line) => {
+        // Check if a new page is needed before adding the question text line
         if (yPos > pdf.internal.pageSize.getHeight() - 10) {
           pdf.addPage();
           yPos = 10;
         }
-        pdf.text(lines[i], 10, yPos);
-        yPos += lineHeight;
-      }
 
-      yPos += 5; // extra space after each section
+        pdf.setFont("normal");
+        pdf.text(line, 10, yPos);
+        yPos += lineHeight;
+      });
+
+      yPos += 5; // Space between questions
     });
 
     // Save the PDF
-    pdf.save("download.pdf");
+    pdf.save(`${chosenSubTopic}.pdf`);
   };
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  const getContentAsString = () => {
+  const getContentAsArray = () => {
     // Extract the relevant topic and subTopic based on the chosen ones
     const topic = filteredTopics.filter(
       (topic) => topic.name === chosenTopic
@@ -78,17 +101,27 @@ function Topics(props) {
     )[0];
 
     // Extract the comprehension text
+    const textAndQuestionsArray = [];
+
     const comprehensionText = subTopic.comprenhensionText.join(" ");
+    const titleAndTextObject = {
+      [chosenSubTopic]: comprehensionText,
+    };
+
+    textAndQuestionsArray.push(titleAndTextObject);
 
     // Extract questions and answers
-    const questionsAndAnswers = subTopic.comprehensionQuestionsAndAnswers
-      .map((qaPair) => `Question: ${qaPair.question} Answer: ${qaPair.answer}`)
-      .join(" ");
+    const questions = subTopic.comprehensionQuestionsAndAnswers.map(
+      (qaPair, index) => ({
+        [`Question ${index + 1}`]: qaPair.question,
+      })
+    );
+
+    textAndQuestionsArray.push(...questions);
 
     // Combine all the extracted content
-    const finalContent = `Comprehension text ${comprehensionText} Comprehension questions and answers ${questionsAndAnswers}`;
 
-    return finalContent;
+    return textAndQuestionsArray;
   };
 
   useEffect(() => {
