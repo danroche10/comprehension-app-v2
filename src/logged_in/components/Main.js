@@ -99,12 +99,6 @@ function Main(props) {
     setSelectedTab("Dashboard");
   }, [setSelectedTab, setCardChart]);
 
-  const selectTopics = useCallback(() => {
-    smoothScrollTop();
-    document.title = "WaVer - Posts";
-    setSelectedTab("Posts");
-  }, [setSelectedTab]);
-
   const selectSubscription = useCallback(() => {
     smoothScrollTop();
     document.title = "WaVer - Subscription";
@@ -126,10 +120,8 @@ function Main(props) {
           topics={topics}
           targets={targets}
           selectDashboard={selectDashboard}
-          selectTopics={selectTopics}
           selectSubscription={selectSubscription}
           setTargets={setTargets}
-          setTopics={setTopics}
         />
       </main>
     </Fragment>

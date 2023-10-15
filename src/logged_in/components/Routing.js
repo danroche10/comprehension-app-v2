@@ -58,10 +58,8 @@ function Routing(props) {
     statistics,
     targets,
     setTargets,
-    setTopics,
     isAccountActivated,
     selectDashboard,
-    selectTopics,
     selectSubscription,
     openAddBalanceDialog,
   } = props;
@@ -78,8 +76,6 @@ function Routing(props) {
           DateTimePicker={DateTimePicker}
           pushMessageToSnackbar={pushMessageToSnackbar}
           topics={topics}
-          setTopics={setTopics}
-          selectTopics={selectTopics}
         />
         <PropsRoute
           path='/c/subscription'
