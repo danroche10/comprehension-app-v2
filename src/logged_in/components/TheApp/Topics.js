@@ -217,6 +217,7 @@ function Topics(props) {
 
   useEffect(() => {
     setChosenYearGroup("");
+    setChosenTopic("");
   }, [subject]);
 
   const onSelectTopicButtonClick = (topicName) => {
