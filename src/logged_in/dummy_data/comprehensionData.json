@@ -1,6 +1,21 @@
 {
   "Religious Education": {},
-  "Geography": {},
+  "Geography": {
+    "Year 4": {
+      "Geography topic": [
+        {
+          "subTopic": "geog sub topic",
+          "comprehensionText": "blah",
+          "comprehensionQuestionsAndAnswers": [
+            {
+              "question": "blah",
+              "answer": "blah"
+            }
+          ]
+        }
+      ]
+    }
+  },
   "History": {
     "Year 1": {},
     "Year 2": {},

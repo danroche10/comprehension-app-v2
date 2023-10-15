@@ -2,8 +2,32 @@
 import comprehensionData from "./comprehensionData.json";
 
 const yearFourHistoryComprehensionData = comprehensionData["History"]["Year 4"];
+const yearFourGeographyComprehensionData =
+  comprehensionData["Geography"]["Year 4"];
 
 const data = {
+  Geography: {
+    "Year 4": [
+      {
+        src: `${process.env.PUBLIC_URL}/images/logged_in/image1.jpg`,
+        name: "Geography topic",
+        subTopics: [
+          {
+            Title: "geog sub topic",
+            comprenhensionText: yearFourGeographyComprehensionData[
+              "Geography topic"
+            ]
+              .filter((topic) => topic.subTopic === "geog sub topic")[0]
+              .comprehensionText.split("\n"),
+            comprehensionQuestionsAndAnswers:
+              yearFourGeographyComprehensionData["Geography topic"].filter(
+                (topic) => topic.subTopic === "geog sub topic"
+              )[0].comprehensionQuestionsAndAnswers,
+          },
+        ],
+      },
+    ],
+  },
   History: {
     "Year 4": [
       {

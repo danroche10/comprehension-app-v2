@@ -215,6 +215,10 @@ function Topics(props) {
     setChosenSubject(pascalCaseSubject);
   }, [subject]);
 
+  useEffect(() => {
+    setChosenYearGroup("");
+  }, [subject]);
+
   const onSelectTopicButtonClick = (topicName) => {
     setChosenTopic(topicName);
     setChosenSubTopic("");
@@ -230,6 +234,7 @@ function Topics(props) {
   const filteredArray = topics
     .filter((topic) => topic.subjectName === chosenSubject)
     .filter((topic) => topic.yearGroupName === chosenYearGroup);
+  console.log(topics);
   const filteredTopics =
     filteredArray.length > 0 ? filteredArray[0].topics : [];
 
